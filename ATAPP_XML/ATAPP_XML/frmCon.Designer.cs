@@ -36,7 +36,10 @@ namespace ATAPP_XML
             this.lblExit = new System.Windows.Forms.Label();
             this.btnCon = new System.Windows.Forms.Button();
             this.pbxIcon = new System.Windows.Forms.PictureBox();
+            this.lblWarning = new System.Windows.Forms.Label();
+            this.pbxWarning = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbxIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxWarning)).BeginInit();
             this.SuspendLayout();
             // 
             // lblWelcom
@@ -102,12 +105,36 @@ namespace ATAPP_XML
             this.pbxIcon.TabIndex = 0;
             this.pbxIcon.TabStop = false;
             // 
+            // lblWarning
+            // 
+            this.lblWarning.AutoSize = true;
+            this.lblWarning.Font = new System.Drawing.Font("Centaur", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarning.Location = new System.Drawing.Point(39, 175);
+            this.lblWarning.Name = "lblWarning";
+            this.lblWarning.Size = new System.Drawing.Size(126, 18);
+            this.lblWarning.TabIndex = 6;
+            this.lblWarning.Text = "Mot de passe erroné";
+            this.lblWarning.Visible = false;
+            // 
+            // pbxWarning
+            // 
+            this.pbxWarning.Image = global::ATAPP_XML.Properties.Resources.icons8_warning_48;
+            this.pbxWarning.Location = new System.Drawing.Point(12, 172);
+            this.pbxWarning.Name = "pbxWarning";
+            this.pbxWarning.Size = new System.Drawing.Size(21, 21);
+            this.pbxWarning.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxWarning.TabIndex = 17;
+            this.pbxWarning.TabStop = false;
+            this.pbxWarning.Visible = false;
+            // 
             // frmCon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(510, 202);
+            this.Controls.Add(this.pbxWarning);
+            this.Controls.Add(this.lblWarning);
             this.Controls.Add(this.btnCon);
             this.Controls.Add(this.lblExit);
             this.Controls.Add(this.tbxConPwd);
@@ -125,6 +152,7 @@ namespace ATAPP_XML
             this.Text = "Connexion";
             this.Load += new System.EventHandler(this.frmCon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxWarning)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,6 +165,8 @@ namespace ATAPP_XML
         private System.Windows.Forms.Label lblExit;
         private System.Windows.Forms.PictureBox pbxIcon;
         private System.Windows.Forms.Button btnCon;
+        private System.Windows.Forms.Label lblWarning;
+        private System.Windows.Forms.PictureBox pbxWarning;
     }
 }
 

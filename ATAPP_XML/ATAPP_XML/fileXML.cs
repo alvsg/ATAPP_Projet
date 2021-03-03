@@ -9,6 +9,7 @@ using System.Windows.Forms; //Add
 using System.Security.Cryptography; //Add
 using System.Runtime.InteropServices; //Add
 using System.Xml.Linq; //Add
+using System.Xml; //Add
 
 namespace ATAPP_XML
 {
@@ -18,21 +19,24 @@ namespace ATAPP_XML
         [DllImport("KERNEL32.DLL", EntryPoint = "RtlZeroMemory")]
         public static extern bool ZeroMemory(IntPtr Destination, int Length);
 
-        static byte[] salt = GenerateRandomSalt();
+        static byte[] salt;
 
-        private string _username, _dirPath, _filePath, _file;
+        private string _username, _dirPath, _filePath, _file, _error;
 
         public string Username { get => _username; set => _username = value; }
         public string DirPath { get => _dirPath; set => _dirPath = value; }
         public string FilePath { get => _filePath; set => _filePath = value; }
-        public string csvFile { get => _file; set => _file = value; }
+        public string xmlFile { get => _file; set => _file = value; }
+        public string Error { get => _error; set => _error = value; }
 
         public fileXML(string user, string folder, string file)
         {
+            salt = GenerateRandomSalt();
+
             _username = user;
             _dirPath = folder;
             _file = file;
-            _filePath = folder + csvFile;
+            _filePath = folder + _file;
         }
 
         /// <summary>
@@ -52,7 +56,7 @@ namespace ATAPP_XML
                 return "Both created";
             }
             //Sinon si le fichier XML n'existe pas
-            else if (!File.Exists(_filePath))
+            else if (!File.Exists(_filePath + ".aes"))
             {
                 CreateFile();
                 return "File created";
@@ -83,11 +87,16 @@ namespace ATAPP_XML
             {
                 // Chiffre le fichier
                 FileEncrypt(_filePath, password);
+
+                IFExist(_filePath);
             }
             else
             {
                 // Déchiffre le fichier
-                FileDecrypt(_filePath + ".aes", "ex_" + _filePath, password);
+                string filePathAES = _filePath + ".aes";
+                FileDecrypt(filePathAES, _filePath, password);
+
+                IFExist(_filePath + ".aes");
             }
 
             // Supprime le mot de passe épingler
@@ -185,8 +194,7 @@ namespace ATAPP_XML
         /// <param name="password"></param>
         private void FileDecrypt(string inputFile, string outputFile, string password)
         {
-            byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
-            byte[] salt = new byte[32];
+            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
 
             FileStream fsCrypt = new FileStream(inputFile, FileMode.Open);
             fsCrypt.Read(salt, 0, salt.Length);
@@ -217,11 +225,11 @@ namespace ATAPP_XML
             }
             catch (CryptographicException ex_CryptographicException)
             {
-                Console.WriteLine("CryptographicException error: " + ex_CryptographicException.Message);
+                _error = "CryptographicException error: " + ex_CryptographicException.Message;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                _error =  "Error: " + ex.Message;
             }
 
             try
@@ -230,7 +238,7 @@ namespace ATAPP_XML
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error by closing CryptoStream: " + ex.Message);
+                _error =  "Error by closing CryptoStream: " + ex.Message;
             }
             finally
             {
@@ -254,6 +262,14 @@ namespace ATAPP_XML
 
             xml.Root.Add(id, username, pwd);
             xml.Save(_filePath);
+        }
+
+        public void IFExist(string file)
+        {
+            if (File.Exists(file))
+            {
+                File.Delete(file);
+            }
         }
     }
 }

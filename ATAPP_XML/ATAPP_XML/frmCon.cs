@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO; //Add
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,13 +43,24 @@ namespace ATAPP_XML
             Application.Exit();
         }
 
+        // +jöhö_è3afbb@äYgP5+3X;sfDNqW
         private void btnCon_Click(object sender, EventArgs e)
         {
-            string enteredPwd = tbxConPwd.Text;
-            if (enteredPwd != string.Empty)
+            file.Error = null;
+            if (tbxConPwd.Text != string.Empty)
             {
-                file.ActionOnFile(false, enteredPwd);
-                CloseThis(enteredPwd);
+
+                file.ActionOnFile(false, tbxConPwd.Text);
+                if (file.Error == null)
+                {
+                    CloseThis(tbxConPwd.Text);
+                }
+                else
+                {
+                    file.c
+                    pbxWarning.Visible = true;
+                    lblWarning.Visible = true;
+                }
             }
         }
 

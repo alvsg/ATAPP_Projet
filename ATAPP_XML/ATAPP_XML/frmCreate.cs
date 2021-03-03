@@ -57,6 +57,7 @@ namespace ATAPP_XML
         {
             this.Hide();
             frmMain form = new frmMain(tbxConfNewPwd.Text);
+            pwd.CopyToClipboard(tbxConfNewPwd);
             form.ShowDialog();
             this.Close();
         }
