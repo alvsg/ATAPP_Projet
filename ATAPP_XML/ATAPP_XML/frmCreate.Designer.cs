@@ -52,30 +52,30 @@ namespace ATAPP_XML
             // lblSignUp
             // 
             this.lblSignUp.AutoSize = true;
-            this.lblSignUp.Font = new System.Drawing.Font("Centaur", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSignUp.Location = new System.Drawing.Point(118, 12);
+            this.lblSignUp.Font = new System.Drawing.Font("Arial", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSignUp.Location = new System.Drawing.Point(117, 21);
             this.lblSignUp.Name = "lblSignUp";
-            this.lblSignUp.Size = new System.Drawing.Size(313, 72);
+            this.lblSignUp.Size = new System.Drawing.Size(322, 60);
             this.lblSignUp.TabIndex = 2;
             this.lblSignUp.Text = "S\'enregistrer";
             // 
             // lblMessageSignUp
             // 
             this.lblMessageSignUp.AutoSize = true;
-            this.lblMessageSignUp.Font = new System.Drawing.Font("Centaur", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessageSignUp.Location = new System.Drawing.Point(127, 84);
+            this.lblMessageSignUp.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessageSignUp.Location = new System.Drawing.Point(125, 81);
             this.lblMessageSignUp.Name = "lblMessageSignUp";
-            this.lblMessageSignUp.Size = new System.Drawing.Size(277, 18);
+            this.lblMessageSignUp.Size = new System.Drawing.Size(260, 16);
             this.lblMessageSignUp.TabIndex = 4;
             this.lblMessageSignUp.Text = "Veuillez remplir ce formulaire pour continuer";
             // 
             // lblNewPwd
             // 
             this.lblNewPwd.AutoSize = true;
-            this.lblNewPwd.Font = new System.Drawing.Font("Centaur", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNewPwd.Font = new System.Drawing.Font("Arial", 9.75F);
             this.lblNewPwd.Location = new System.Drawing.Point(9, 144);
             this.lblNewPwd.Name = "lblNewPwd";
-            this.lblNewPwd.Size = new System.Drawing.Size(145, 18);
+            this.lblNewPwd.Size = new System.Drawing.Size(148, 16);
             this.lblNewPwd.TabIndex = 5;
             this.lblNewPwd.Text = "Nouveau mot de passe :";
             // 
@@ -93,10 +93,10 @@ namespace ATAPP_XML
             // lblConfNewPwd
             // 
             this.lblConfNewPwd.AutoSize = true;
-            this.lblConfNewPwd.Font = new System.Drawing.Font("Centaur", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConfNewPwd.Font = new System.Drawing.Font("Arial", 9.75F);
             this.lblConfNewPwd.Location = new System.Drawing.Point(55, 182);
             this.lblConfNewPwd.Name = "lblConfNewPwd";
-            this.lblConfNewPwd.Size = new System.Drawing.Size(99, 18);
+            this.lblConfNewPwd.Size = new System.Drawing.Size(92, 16);
             this.lblConfNewPwd.TabIndex = 7;
             this.lblConfNewPwd.Text = "Confirmation  :";
             // 
@@ -113,23 +113,25 @@ namespace ATAPP_XML
             // 
             // btnSetPwd
             // 
-            this.btnSetPwd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetPwd.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnSetPwd.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnSetPwd.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetPwd.Location = new System.Drawing.Point(337, 239);
             this.btnSetPwd.Name = "btnSetPwd";
             this.btnSetPwd.Size = new System.Drawing.Size(102, 23);
             this.btnSetPwd.TabIndex = 9;
             this.btnSetPwd.Text = "Apply";
-            this.btnSetPwd.UseVisualStyleBackColor = true;
+            this.btnSetPwd.UseVisualStyleBackColor = false;
             this.btnSetPwd.Click += new System.EventHandler(this.btnSetPwd_Click);
             // 
             // lblMessageError
             // 
             this.lblMessageError.AutoSize = true;
-            this.lblMessageError.Font = new System.Drawing.Font("Centaur", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessageError.Font = new System.Drawing.Font("Arial", 9.75F);
             this.lblMessageError.ForeColor = System.Drawing.Color.Black;
             this.lblMessageError.Location = new System.Drawing.Point(34, 244);
             this.lblMessageError.Name = "lblMessageError";
-            this.lblMessageError.Size = new System.Drawing.Size(239, 18);
+            this.lblMessageError.Size = new System.Drawing.Size(246, 16);
             this.lblMessageError.TabIndex = 10;
             this.lblMessageError.Text = "Les deux champs ne sont pas identique !";
             this.lblMessageError.Visible = false;
@@ -137,10 +139,10 @@ namespace ATAPP_XML
             // cbxRandomPassword
             // 
             this.cbxRandomPassword.AutoSize = true;
-            this.cbxRandomPassword.Font = new System.Drawing.Font("Centaur", 12F);
+            this.cbxRandomPassword.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cbxRandomPassword.Location = new System.Drawing.Point(160, 206);
             this.cbxRandomPassword.Name = "cbxRandomPassword";
-            this.cbxRandomPassword.Size = new System.Drawing.Size(242, 22);
+            this.cbxRandomPassword.Size = new System.Drawing.Size(244, 20);
             this.cbxRandomPassword.TabIndex = 15;
             this.cbxRandomPassword.Text = "Génération de mot de passe aléatoire";
             this.cbxRandomPassword.UseVisualStyleBackColor = true;
@@ -214,6 +216,7 @@ namespace ATAPP_XML
             this.Name = "frmCreate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Biblio-tech";
+            this.Load += new System.EventHandler(this.frmCreate_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxIconMessage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxNewPwd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxConfPwd)).EndInit();

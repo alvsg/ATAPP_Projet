@@ -276,7 +276,7 @@ namespace ATAPP_XML
             XElement username = new XElement("username", user);
             XElement pwd = new XElement("pwd", value);
 
-            XElement id = new XElement("id"); // Faire en sorte de ne pas entrer l'id en dur !
+            XElement id = new XElement("id");
             id.SetAttributeValue("num", 0);
             xml.Root.Add(id);
             xml.Root.Element("id").Add(name, username, pwd);
@@ -295,9 +295,19 @@ namespace ATAPP_XML
             }
         }
 
-        public string[] GetDataInArray()
+        public List<Array> GetDataInArray()
         {
-            string[] data = XDocument.Load(_filePath).Descendants("data").Select(element => element.Value).ToArray();
+            List<Array> data = new List<Array>();
+            XDocument xml = XDocument.Load(_filePath);
+
+            string[] name = xml.Descendants("data").Nodes().ToList().Select(el => ((XElement)el).Element("name").Value).ToArray();
+            string[] username = xml.Descendants("data").Nodes().ToList().Select(el => ((XElement)el).Element("username").Value).ToArray();
+            string[] pwd = xml.Descendants("data").Nodes().ToList().Select(el => ((XElement)el).Element("pwd").Value).ToArray();
+
+            data.Add(name);
+            data.Add(username);
+            data.Add(pwd);
+
             return data;
         }
     }

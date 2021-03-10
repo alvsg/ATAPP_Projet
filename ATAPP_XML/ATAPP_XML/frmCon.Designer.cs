@@ -45,20 +45,20 @@ namespace ATAPP_XML
             // lblWelcom
             // 
             this.lblWelcom.AutoSize = true;
-            this.lblWelcom.Font = new System.Drawing.Font("Centaur", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcom.Location = new System.Drawing.Point(143, 12);
+            this.lblWelcom.Font = new System.Drawing.Font("Arial", 39.75F);
+            this.lblWelcom.Location = new System.Drawing.Point(145, 15);
             this.lblWelcom.Name = "lblWelcom";
-            this.lblWelcom.Size = new System.Drawing.Size(284, 72);
+            this.lblWelcom.Size = new System.Drawing.Size(268, 60);
             this.lblWelcom.TabIndex = 1;
             this.lblWelcom.Text = "Biblio-tech";
             // 
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Font = new System.Drawing.Font("Centaur", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.Font = new System.Drawing.Font("Arial", 9.75F);
             this.lblMessage.Location = new System.Drawing.Point(152, 75);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(299, 18);
+            this.lblMessage.Size = new System.Drawing.Size(290, 16);
             this.lblMessage.TabIndex = 2;
             this.lblMessage.Text = "Veuillez entrer votre mot de passe pour continuer";
             // 
@@ -76,23 +76,25 @@ namespace ATAPP_XML
             // lblExit
             // 
             this.lblExit.AutoSize = true;
-            this.lblExit.Font = new System.Drawing.Font("Centaur", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExit.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExit.Location = new System.Drawing.Point(197, 165);
             this.lblExit.Name = "lblExit";
-            this.lblExit.Size = new System.Drawing.Size(126, 18);
+            this.lblExit.Size = new System.Drawing.Size(120, 16);
             this.lblExit.TabIndex = 4;
             this.lblExit.Text = "Fermer l\'application";
             this.lblExit.Click += new System.EventHandler(this.lblExit_Click);
             // 
             // btnCon
             // 
+            this.btnCon.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnCon.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnCon.Font = new System.Drawing.Font("Arial", 8.25F);
             this.btnCon.Location = new System.Drawing.Point(377, 123);
             this.btnCon.Name = "btnCon";
             this.btnCon.Size = new System.Drawing.Size(93, 23);
             this.btnCon.TabIndex = 5;
             this.btnCon.Text = "Enter";
-            this.btnCon.UseVisualStyleBackColor = true;
+            this.btnCon.UseVisualStyleBackColor = false;
             this.btnCon.Click += new System.EventHandler(this.btnCon_Click);
             // 
             // pbxIcon
@@ -108,10 +110,10 @@ namespace ATAPP_XML
             // lblWarning
             // 
             this.lblWarning.AutoSize = true;
-            this.lblWarning.Font = new System.Drawing.Font("Centaur", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarning.Font = new System.Drawing.Font("Arial", 9.75F);
             this.lblWarning.Location = new System.Drawing.Point(39, 175);
             this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(126, 18);
+            this.lblWarning.Size = new System.Drawing.Size(127, 16);
             this.lblWarning.TabIndex = 6;
             this.lblWarning.Text = "Mot de passe erroné";
             this.lblWarning.Visible = false;

@@ -63,6 +63,16 @@ namespace ATAPP_XML.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_accueil_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-accueil-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_aide_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-aide-48", resourceCulture);

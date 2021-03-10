@@ -109,6 +109,11 @@ namespace ATAPP_XML
             }
         }
 
+        private void frmCreate_Load(object sender, EventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// Méthode qui permet, selon le nom de la picture box, de renvoyer un boolean qui représente son état et la textbox correspondante
         /// </summary>

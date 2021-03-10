@@ -69,7 +69,6 @@ namespace ATAPP_XML
         {
             this.Hide();
             frmMain form = new frmMain(p);
-            // déchiffrement du fichier
             form.ShowDialog();
             this.Close();
         }

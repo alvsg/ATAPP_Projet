@@ -32,13 +32,13 @@ namespace ATAPP_XML
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            file.ActionOnFile(true, key);
+
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            //string[] data = file.GetDataInArray();
-            //file.ActionOnFile(true, key);
+            List<Array> data = file.GetDataInArray();
+            file.ActionOnFile(true, key);
         }
     }
 }
