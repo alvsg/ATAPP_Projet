@@ -23,4 +23,9 @@ Afficher/Masquer le mot de passe
 ## A faire pour la prochaine fois
 
 - [x] ~~Régler le problème de connexion suite à un mot de passe erroné.~~
-- [ ] Revoir les méthodes de chiffrement/déchiffrement
+- [ ] (Potentiel) Revoir l'emplacement des méthodes de chiffrement/déchiffrement.
+- [ ] Revoir la sécurité lors de l'ouverture de l'application.
+- [ ] (Potentiel) Proposer une alternative en cas de mot de passe oublié.
+- [ ] Récupérer et Supprimer les données dans le fichiers .xml.
+- [ ] Gérer l'import/export d'un fichier .xml.
+- [ ] Revoir l'emplacement de la méthode de création du fichier .xml.
