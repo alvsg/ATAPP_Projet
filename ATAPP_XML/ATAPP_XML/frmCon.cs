@@ -1,9 +1,16 @@
-﻿using System;
+﻿/*
+ * PROJET : Bilbio-tech
+ * AUTEUR : ALVES GUASTTI Letitia (I.FA-P3A)
+ * DESC. : Un gestionnaire de mot de passe
+ * VERSION : 26.01.2021 v.1
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO; //Add
+using System.IO; //Added
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +20,7 @@ namespace ATAPP_XML
 {
     public partial class frmCon : Form
     {
-        static string username, folder, xmlFile, result;
+        static string result;
 
         fileXML file;
 
@@ -21,15 +28,9 @@ namespace ATAPP_XML
         {
             InitializeComponent();
 
-            //Récupère le nom d'utilisateur de Windows
-            username = Environment.UserName;
+            file = new fileXML();
 
-            folder = @"C:\Users\%Users%\Documents\data\".Replace("%Users%", username);
-            xmlFile = "database.xml";
-
-            file = new fileXML(username, folder, xmlFile);
-
-            //Renvoie si Oui/Non le dossier et le fichier existe
+            //Renvoie si le dossier et le fichier existe
             result = file.VerifyIfExist();
         }
 
@@ -43,13 +44,11 @@ namespace ATAPP_XML
             Application.Exit();
         }
 
-        // +jöhö_è3afbb@äYgP5+3X;sfDNqW
         private void btnCon_Click(object sender, EventArgs e)
         {
             file.Error = null;
             if (tbxConPwd.Text != string.Empty)
             {
-
                 file.ActionOnFile(false, tbxConPwd.Text);
                 if (file.Error == null)
                 {
@@ -57,7 +56,6 @@ namespace ATAPP_XML
                 }
                 else
                 {
-                    file.c
                     pbxWarning.Visible = true;
                     lblWarning.Visible = true;
                 }
@@ -81,7 +79,7 @@ namespace ATAPP_XML
         /// </summary>
         public void VerifyIfFirstOpen()
         {
-            if (result != "OK")
+            if (result != "Exist")
             {
                 this.Hide();
                 frmCreate form = new frmCreate();

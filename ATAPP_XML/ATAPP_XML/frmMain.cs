@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * PROJET : Bilbio-tech
+ * AUTEUR : ALVES GUASTTI Letitia (I.FA-P3A)
+ * DESC. : Un gestionnaire de mot de passe
+ * VERSION : 26.01.2021 v.1
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +19,7 @@ namespace ATAPP_XML
 {
     public partial class frmMain : Form
     {
-        static string username, folder, xmlFile, key;
-
+        static string key;
         fileXML file;
 
         public frmMain(string s)
@@ -21,19 +27,18 @@ namespace ATAPP_XML
             key = s;
 
             InitializeComponent();
-
-            //Récupère le nom d'utilisateur de Windows
-            username = Environment.UserName;
-
-            folder = @"C:\Users\%Users%\Documents\data\".Replace("%Users%", username);
-            xmlFile = "database.xml";
-
-            file = new fileXML(username, folder, xmlFile);
+            file = new fileXML();
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             file.ActionOnFile(true, key);
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            //string[] data = file.GetDataInArray();
+            //file.ActionOnFile(true, key);
         }
     }
 }

@@ -1,19 +1,21 @@
-﻿using System;
+﻿/*
+ * PROJET : Bilbio-tech
+ * AUTEUR : ALVES GUASTTI Letitia (I.FA-P3A)
+ * DESC. : Un gestionnaire de mot de passe
+ * VERSION : 26.01.2021 v.1
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms; //Add
+using System.Windows.Forms; //Added
 
 namespace ATAPP_XML
 {
     class Password
     {
-
-        private string _pwd;
-
-        public string Pwd { get => _pwd; set => _pwd = value; }
-
         public Password()
         {
 
@@ -25,7 +27,8 @@ namespace ATAPP_XML
         /// <returns></returns>
         public string GeneratorRandom()
         {
-            string characters = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789^~_-!:;?@#%&$£+=§èüéöàä";
+            // https://wmich.edu/arts-sciences/technology-password-tips
+            string characters = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789 ~`!@#$%^&*()_-+={[}]|\\:;\"'<,>.?/";
             Random rnd = new Random();
             int length = rnd.Next(8, 32);
             string GeneratePwd = "";
@@ -36,6 +39,10 @@ namespace ATAPP_XML
             return GeneratePwd;
         }
 
+        /// <summary>
+        /// Méthode qui permet de copier-coller le mot de passe dans le press-papier
+        /// </summary>
+        /// <param name="tbx"> Le mot de passe entrée par l'utilisateur </param>
         public void CopyToClipboard(TextBox tbx)
         {
             Clipboard.SetDataObject(tbx.Text);
