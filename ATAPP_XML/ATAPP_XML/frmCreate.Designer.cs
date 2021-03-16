@@ -183,7 +183,7 @@ namespace ATAPP_XML
             // 
             // pbxIconNewUser
             // 
-            this.pbxIconNewUser.Image = global::ATAPP_XML.Properties.Resources.icons8_ajouter_un_utilisateur_homme_100;
+            //this.pbxIconNewUser.Image = global::ATAPP_XML.Properties.Resources.icons8_ajouter_un_utilisateur_homme_100;
             this.pbxIconNewUser.Location = new System.Drawing.Point(12, 12);
             this.pbxIconNewUser.Name = "pbxIconNewUser";
             this.pbxIconNewUser.Size = new System.Drawing.Size(100, 95);

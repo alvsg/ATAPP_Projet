@@ -35,7 +35,7 @@ namespace ATAPP_XML
         {
             if (tbxNewPwd.Text == tbxConfNewPwd.Text && tbxNewPwd.Text != string.Empty && tbxConfNewPwd.Text != string.Empty)
             {
-                file.InsertDataInFile(file.Username, tbxConfNewPwd.Text);
+                file.InsertDataInFile(file.Username, "Biblio-tech", tbxConfNewPwd.Text, 0);
                 CloseThis();
             }
             else
@@ -79,8 +79,10 @@ namespace ATAPP_XML
         public void CloseThis()
         {
             this.Hide();
-            frmMain form = new frmMain(tbxConfNewPwd.Text);
-            pwd.CopyToClipboard(tbxConfNewPwd);
+            //frmMain form = new frmMain(tbxConfNewPwd.Text);
+            frmMain form = new frmMain();
+            form.Key = tbxConfNewPwd.Text;
+            //pwd.CopyToClipboard(tbxConfNewPwd);
             form.ShowDialog();
             this.Close();
         }

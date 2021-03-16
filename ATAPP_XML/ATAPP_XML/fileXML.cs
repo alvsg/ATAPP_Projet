@@ -32,7 +32,7 @@ namespace ATAPP_XML
         public string Username { get => _username; }
         public string DirPath { get => _dirPath; }
         public string FilePath { get => _filePath; }
-        public string xmlFile { get => _file;  }
+        public string xmlFile { get => _file; }
         public string Error { get => _error; set => _error = value; }
 
         public fileXML()
@@ -40,7 +40,7 @@ namespace ATAPP_XML
             salt = GenerateRandomSalt();
 
             _username = Environment.UserName;
-            _dirPath = @"C:\Users\%Users%\Documents\data\".Replace("%Users%", _username);
+            _dirPath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "/db/";
             _file = "database.xml";
             _filePath = _dirPath + _file;
         }
@@ -268,18 +268,18 @@ namespace ATAPP_XML
         /// </summary>
         /// <param name="user"> Le nom d'utilisateur de Windows </param>
         /// <param name="value"> Le mot de passe de l'utilisateur </param>
-        public void InsertDataInFile(string user, string value)
+        public void InsertDataInFile(string user, string n, string value, int index)
         {
             XDocument xml = XDocument.Load(_filePath);
 
-            XElement name = new XElement("name", "Biblio-tech");
+            XElement name = new XElement("name", n);
             XElement username = new XElement("username", user);
             XElement pwd = new XElement("pwd", value);
-
             XElement id = new XElement("id");
-            id.SetAttributeValue("num", 0);
+
+            id.SetAttributeValue("num", index);
             xml.Root.Add(id);
-            xml.Root.Element("id").Add(name, username, pwd);
+            id.Add(name, username, pwd);
             xml.Save(_filePath);
         }
 
@@ -295,18 +295,15 @@ namespace ATAPP_XML
             }
         }
 
-        public List<Array> GetDataInArray()
+        public List<Fiche> GetDataInArray()
         {
-            List<Array> data = new List<Array>();
+            List<Fiche> data = new List<Fiche>();
             XDocument xml = XDocument.Load(_filePath);
 
-            string[] name = xml.Descendants("data").Nodes().ToList().Select(el => ((XElement)el).Element("name").Value).ToArray();
-            string[] username = xml.Descendants("data").Nodes().ToList().Select(el => ((XElement)el).Element("username").Value).ToArray();
-            string[] pwd = xml.Descendants("data").Nodes().ToList().Select(el => ((XElement)el).Element("pwd").Value).ToArray();
-
-            data.Add(name);
-            data.Add(username);
-            data.Add(pwd);
+            foreach (XElement el in xml.Descendants("data").Nodes().ToList())
+            {
+                data.Add(new Fiche(el.Element("username").Value, el.Element("pwd").Value, el.Element("name").Value));
+            }
 
             return data;
         }

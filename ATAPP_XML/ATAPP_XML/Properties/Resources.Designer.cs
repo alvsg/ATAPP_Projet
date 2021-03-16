@@ -83,16 +83,6 @@ namespace ATAPP_XML.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_ajouter_un_utilisateur_homme_100 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-ajouter-un-utilisateur-homme-100", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icons8_automatique_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-automatique-100", resourceCulture);

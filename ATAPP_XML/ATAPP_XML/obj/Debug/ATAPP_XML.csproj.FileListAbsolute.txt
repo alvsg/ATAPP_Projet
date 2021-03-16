@@ -22,3 +22,4 @@ C:\Users\ALVSGL\Desktop\ATAPP_Projet\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.csp
 C:\Users\ALVSGL\Desktop\ATAPP_Projet\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.csproj.CoreCompileInputs.cache
 C:\Users\ALVSGL\Desktop\ATAPP_Projet\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.exe
 C:\Users\ALVSGL\Desktop\ATAPP_Projet\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.pdb
+C:\Users\ALVSGL\Desktop\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.frmFormulaire.resources

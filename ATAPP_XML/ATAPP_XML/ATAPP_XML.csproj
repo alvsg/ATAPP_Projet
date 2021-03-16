@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fiche.cs" />
     <Compile Include="fileXML.cs" />
     <Compile Include="frmCon.cs">
       <SubType>Form</SubType>
@@ -58,6 +59,12 @@
     </Compile>
     <Compile Include="frmCreate.Designer.cs">
       <DependentUpon>frmCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFormulaire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFormulaire.Designer.cs">
+      <DependentUpon>frmFormulaire.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -73,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCreate.resx">
       <DependentUpon>frmCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFormulaire.resx">
+      <DependentUpon>frmFormulaire.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

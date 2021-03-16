@@ -21,7 +21,6 @@ namespace ATAPP_XML
     public partial class frmCon : Form
     {
         static string result;
-
         fileXML file;
 
         public frmCon()
@@ -68,7 +67,8 @@ namespace ATAPP_XML
         public void CloseThis(string p)
         {
             this.Hide();
-            frmMain form = new frmMain(p);
+            frmMain form = new frmMain();
+            form.Key = p;
             form.ShowDialog();
             this.Close();
         }
