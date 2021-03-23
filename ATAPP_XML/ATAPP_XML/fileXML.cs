@@ -55,16 +55,14 @@ namespace ATAPP_XML
             if (!Directory.Exists(_dirPath))
             {
                 Directory.CreateDirectory(_dirPath);
-                CreateFile();
-                return "Both created";
+                return "0";
             }
             //Sinon si le fichier XML n'existe pas
             else if (!File.Exists(_filePath + ".aes"))
             {
-                CreateFile();
-                return "File created";
+                return "0";
             }
-            return "Exist";
+            return "1";
         }
 
         /// <summary>
@@ -80,7 +78,7 @@ namespace ATAPP_XML
         /// Méthode qui permet de récupérer le mot de passe puis de lancer le chiffrage selon ce mot de passe
         /// </summary>
         /// <param name="password"> Le mot de passe de l'utilisateur </param>
-        public void ActionOnFile(bool action, string password)
+        public void ActionOnFile(bool action, string password, string state)
         {
             // Epingle le mot de passe
             GCHandle gch = GCHandle.Alloc(password, GCHandleType.Pinned);
@@ -106,10 +104,12 @@ namespace ATAPP_XML
                 }
             }
 
-            // Supprime le mot de passe épingler
-            ZeroMemory(gch.AddrOfPinnedObject(), password.Length * 2);
-            gch.Free();
-
+            // Supprime le mot de passe épingler si pas en ecriture dans le fichier
+            if (state != "writing")
+            {
+                ZeroMemory(gch.AddrOfPinnedObject(), password.Length * 2);
+                gch.Free();
+            }
         }
 
         /// <summary>

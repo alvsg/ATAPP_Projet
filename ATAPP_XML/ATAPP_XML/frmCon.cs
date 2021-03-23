@@ -28,8 +28,6 @@ namespace ATAPP_XML
             InitializeComponent();
 
             file = new fileXML();
-
-            //Renvoie si le dossier et le fichier existe
             result = file.VerifyIfExist();
         }
 
@@ -48,7 +46,7 @@ namespace ATAPP_XML
             file.Error = null;
             if (tbxConPwd.Text != string.Empty)
             {
-                file.ActionOnFile(false, tbxConPwd.Text);
+                file.ActionOnFile(false, tbxConPwd.Text, "");
                 if (file.Error == null)
                 {
                     CloseThis(tbxConPwd.Text);
@@ -67,8 +65,7 @@ namespace ATAPP_XML
         public void CloseThis(string p)
         {
             this.Hide();
-            frmMain form = new frmMain();
-            form.Key = p;
+            frmMain form = new frmMain(p);
             form.ShowDialog();
             this.Close();
         }
@@ -78,7 +75,7 @@ namespace ATAPP_XML
         /// </summary>
         public void VerifyIfFirstOpen()
         {
-            if (result != "Exist")
+            if (result != "1")
             {
                 this.Hide();
                 frmCreate form = new frmCreate();

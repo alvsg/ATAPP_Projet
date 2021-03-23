@@ -35,8 +35,9 @@ namespace ATAPP_XML
         {
             if (tbxNewPwd.Text == tbxConfNewPwd.Text && tbxNewPwd.Text != string.Empty && tbxConfNewPwd.Text != string.Empty)
             {
+                file.CreateFile();
                 file.InsertDataInFile(file.Username, "Biblio-tech", tbxConfNewPwd.Text, 0);
-                CloseThis();
+                CloseThis(tbxConfNewPwd.Text);
             }
             else
             {
@@ -76,13 +77,10 @@ namespace ATAPP_XML
         /// <summary>
         /// Méthode qui permet de fermer le formulaire de connexion et d'ouvrir le formulaire principal
         /// </summary>
-        public void CloseThis()
+        public void CloseThis(string p)
         {
             this.Hide();
-            //frmMain form = new frmMain(tbxConfNewPwd.Text);
-            frmMain form = new frmMain();
-            form.Key = tbxConfNewPwd.Text;
-            //pwd.CopyToClipboard(tbxConfNewPwd);
+            frmMain form = new frmMain(p);
             form.ShowDialog();
             this.Close();
         }

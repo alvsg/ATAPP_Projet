@@ -38,15 +38,5 @@ namespace ATAPP_XML
             }
             return GeneratePwd;
         }
-
-        /// <summary>
-        /// Méthode qui permet de copier-coller le mot de passe dans le press-papier
-        /// </summary>
-        /// <param name="tbx"> Le mot de passe entrée par l'utilisateur </param>
-        public void CopyToClipboard(TextBox tbx)
-        {
-            Clipboard.SetDataObject(tbx.Text);
-            MessageBox.Show("Votre mot de passe à été copier dans le press-papier.");
-        }
     }
 }

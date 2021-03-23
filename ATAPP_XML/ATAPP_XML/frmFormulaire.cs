@@ -15,13 +15,18 @@ namespace ATAPP_XML
         private Fiche _fiche;
         private string _action;
 
+        static bool clicked = false;
+
         public string NameBtn { get => _action; set => _action = value; }
-        public Fiche Fiche { get => _fiche; set => _fiche = value; }
+        public Fiche Fiche { get => _fiche; }
+
+        Password pwd;
 
         public frmFormulaire(string btn)
         {
             InitializeComponent();
 
+            pwd = new Password();
             _action = btn;
             _fiche = new Fiche();
         }
@@ -30,6 +35,7 @@ namespace ATAPP_XML
         {
             InitializeComponent();
 
+            pwd = new Password();
             _fiche = fiche;
             _action = btn;
         }
@@ -39,15 +45,20 @@ namespace ATAPP_XML
             switch (_action)
             {
                 case "ShowData":
+                    btnAction.Text = "Enregistrer";
                     lblName.Text = Fiche.Name;
                     lblUsername.Text = Fiche.Username;
                     for (int i = 0; i < Fiche.Password.Length; i++)
                     {
                         lblPwd.Text += "*";
                     }
+                    btnAction.Enabled = false;
                     break;
 
                 case "Ajouter":
+                    pbxPwdM.Visible = true;
+                    cbxRandomPasswordM.Visible = true;
+                    btnAction.Text = "Ajouter";
                     lblName.Visible = false;
                     lblPwd.Visible = false;
                     lblUsername.Visible = false;
@@ -57,13 +68,42 @@ namespace ATAPP_XML
                     tbxUsername.Visible = true;
 
                     btnModify.Visible = false;
-                    btnAjouter.Visible = true;
                     break;
+            }
+        }
+
+        private void Ajouter()
+        {
+            if (tbxName.Text != string.Empty && tbxUsername.Text != string.Empty && tbxPwd.Text != string.Empty)
+            {
+                Fiche.Name = tbxName.Text;
+                Fiche.Password = tbxPwd.Text;
+                Fiche.Username = tbxUsername.Text;
+            }
+        }
+
+        public void CloseThis()
+        {
+            ActiveForm.Close();
+        }
+
+        private void btnAction_Click(object sender, EventArgs e)
+        {
+            if (btnAction.Text == "Ajouter")
+            {
+                Ajouter();
+            }
+            else
+            {
+                Save();
             }
         }
 
         private void btnModify_Click(object sender, EventArgs e)
         {
+            pbxPwdM.Visible = true;
+            cbxRandomPasswordM.Visible = true;
+
             if (Fiche.Name == "Biblio-tech")
             {
                 lblPwd.Visible = false;
@@ -88,21 +128,14 @@ namespace ATAPP_XML
             }
 
             btnModify.Enabled = false;
-            btnSave.Visible = true;
+            btnAction.Enabled = true;
         }
 
-        private void btnAjouter_Click(object sender, EventArgs e)
+        public void Save()
         {
-            if (tbxName.Text != string.Empty && tbxUsername.Text != string.Empty && tbxPwd.Text != string.Empty)
-            {
-                Fiche.Name = tbxName.Text;
-                Fiche.Password = tbxPwd.Text;
-                Fiche.Username = tbxUsername.Text;
-            }
-        }
+            btnModify.Enabled = true;
+            btnAction.Visible = false;
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
             if (Fiche.Name == "Biblio-tech")
             {
                 if (tbxPwd.Text != Fiche.Password)
@@ -136,14 +169,35 @@ namespace ATAPP_XML
                 tbxPwd.Visible = false;
                 tbxUsername.Visible = false;
             }
-
-            btnModify.Enabled = true;
-            btnSave.Visible = false;
         }
 
-        public void CloseThis()
+        private void pbxNewPwd_Click(object sender, EventArgs e)
         {
-            ActiveForm.Close();
+            if (!clicked)
+            {
+                pbxPwdM.Image = Properties.Resources.icons8_visible_24__1_;
+                tbxPwd.PasswordChar = '\0';
+                clicked = true;
+            }
+            else
+            {
+                pbxPwdM.Image = Properties.Resources.icons8_invisible_24;
+                tbxPwd.PasswordChar = '*';
+                clicked = false;
+            }
+        }
+
+        private void cbxRandomPasswordM_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxRandomPasswordM.Checked)
+            {
+                string GeneratedPwd = pwd.GeneratorRandom();
+                tbxPwd.Text = GeneratedPwd;
+            }
+            else
+            {
+                tbxPwd.Text = "";
+            }
         }
     }
 }

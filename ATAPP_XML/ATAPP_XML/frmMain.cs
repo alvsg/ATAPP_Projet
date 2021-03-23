@@ -20,30 +20,28 @@ namespace ATAPP_XML
     public partial class frmMain : Form
     {
         private string _key;
-         
-        List<Fiche> data = new List<Fiche>();
+        static List<int> countFirst, countLast;
+
+        static List<Fiche> data = new List<Fiche>();
         fileXML file;
         Button b;
 
-        public List<Fiche> Data { get => data; set => data = value; }
-        public string Key { get => _key; set => _key = value; }
+        public static List<Fiche> Data { get => data; set => data = value; }
+        public string Key { get => _key; }
 
-        public frmMain()
+        public frmMain(string s)
         {
             InitializeComponent();
+
+            _key = s;
             file = new fileXML();
-
             Data = file.GetDataInArray();
-        }
-
-        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
+            countFirst = Enumerable.Range(0, Data.Count).ToList();
+            file.ActionOnFile(true, Key, "writing");
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            file.ActionOnFile(true, Data[0].Password);
             UpdateView();
         }
 
@@ -57,7 +55,7 @@ namespace ATAPP_XML
 
                 if (frm.DialogResult == DialogResult.OK)
                 {
-                    //Modify
+                    //modify
                 }
             }
         }
@@ -68,21 +66,21 @@ namespace ATAPP_XML
             frmFormulaire.ShowDialog();
             if (frmFormulaire.DialogResult == DialogResult.OK)
             {
-                string username = frmFormulaire.Fiche.Username;
-                string name = frmFormulaire.Fiche.Name;
-                string pwd = frmFormulaire.Fiche.Password;
+                Fiche f = new Fiche();
 
-                file.ActionOnFile(false, Key);
-                file.InsertDataInFile(username, name, pwd, 1);
-                Data.Add(new Fiche(username, pwd, name));
-                flowLayoutPanel1.Controls.Clear();
-                UpdateView();
-                file.ActionOnFile(true, Key);
+                f.Name = frmFormulaire.Fiche.Name;
+                f.Username = frmFormulaire.Fiche.Username;
+                f.Password = frmFormulaire.Fiche.Password;
+
+                Data.Add(f);
             }
+            UpdateView();
         }
 
         public void UpdateView()
         {
+            flowLayoutPanel1.Controls.Clear();
+
             foreach (Fiche fiche in Data)
             {
                 b = new Button();
@@ -94,6 +92,26 @@ namespace ATAPP_XML
                 b.Click += btnFlp_Click;
                 flowLayoutPanel1.Controls.Add(b);
             }
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Hide();
+            file.ActionOnFile(false, _key, "writing");
+            countLast = Enumerable.Range(0, Data.Count).ToList();
+            if (countFirst.Count() != countLast.Count())
+            {
+                foreach (Fiche f in Data)
+                {
+                    int first = Data.FindIndex(a => a.Name == f.Name);
+                    if(countFirst.Contains(first) == false)
+                    {
+                        file.InsertDataInFile(f.Username, f.Name, f.Password, first);
+                    }
+                }
+            }
+            file.ActionOnFile(true, _key, "");
+            this.Close();
         }
     }
 }
