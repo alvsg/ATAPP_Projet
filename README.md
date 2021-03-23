@@ -23,9 +23,12 @@ Afficher/Masquer le mot de passe
 ## A faire pour la prochaine fois
 
 - [x] ~~Régler le problème de connexion suite à un mot de passe erroné.~~
-- [ ] (Potentiel) Revoir l'emplacement des méthodes de chiffrement/déchiffrement.
-- [ ] Revoir la sécurité lors de l'ouverture de l'application.
+- [x] ~~(Potentiel) Revoir l'emplacement des méthodes de chiffrement/déchiffrement.~~
+- [x] ~~Revoir la sécurité lors de l'ouverture de l'application.~~
 - [ ] (Potentiel) Proposer une alternative en cas de mot de passe oublié.
-- [ ] Récupérer et Supprimer les données dans le fichiers .xml.
+- [ ] Modifier et Supprimer les données dans le fichiers .xml.
 - [ ] Gérer l'import/export d'un fichier .xml.
-- [ ] Revoir l'emplacement de la méthode de création du fichier .xml.
+- [x] ~~Revoir l'emplacement de la méthode de création du fichier .xml.~~
+- [x] ~~Récupérer toutes les données du fichier .xml dans une liste au lacement de l'application.~~
+- [x] ~~Mettre à jour les données dans le fichier .xml lors de la fermeture des données.~~
+- [x] ~~Mettre à jour l'affichage en fonction des changement effectué dans la liste.~~
