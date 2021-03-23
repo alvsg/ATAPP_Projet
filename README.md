@@ -32,3 +32,5 @@ Afficher/Masquer le mot de passe
 - [x] ~~Récupérer toutes les données du fichier .xml dans une liste au lacement de l'application.~~
 - [x] ~~Mettre à jour les données dans le fichier .xml lors de la fermeture des données.~~
 - [x] ~~Mettre à jour l'affichage en fonction des changement effectué dans la liste.~~
+- [x] ~~Permettre de générer un mot de passe lors de la création ou la modification d'une entrée.~~
+- [x] ~~Afficher ou masquer le mot de passe lors de la création ou la modification d'une entrée.~~
