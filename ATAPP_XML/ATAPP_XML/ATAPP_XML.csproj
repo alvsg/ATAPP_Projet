@@ -46,25 +46,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fiche.cs" />
-    <Compile Include="fileXML.cs" />
-    <Compile Include="frmCon.cs">
+    <Compile Include="Record.cs" />
+    <Compile Include="FileXML.cs" />
+    <Compile Include="frmConnection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCon.Designer.cs">
-      <DependentUpon>frmCon.cs</DependentUpon>
+    <Compile Include="frmConnection.Designer.cs">
+      <DependentUpon>frmConnection.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCreate.cs">
+    <Compile Include="frmCreation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCreate.Designer.cs">
-      <DependentUpon>frmCreate.cs</DependentUpon>
+    <Compile Include="frmCreation.Designer.cs">
+      <DependentUpon>frmCreation.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFormulaire.cs">
+    <Compile Include="frmForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFormulaire.Designer.cs">
-      <DependentUpon>frmFormulaire.cs</DependentUpon>
+    <Compile Include="frmForm.Designer.cs">
+      <DependentUpon>frmForm.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -75,14 +75,15 @@
     <Compile Include="Password.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmCon.resx">
-      <DependentUpon>frmCon.cs</DependentUpon>
+    <Compile Include="Safe.cs" />
+    <EmbeddedResource Include="frmConnection.resx">
+      <DependentUpon>frmConnection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCreate.resx">
-      <DependentUpon>frmCreate.cs</DependentUpon>
+    <EmbeddedResource Include="frmCreation.resx">
+      <DependentUpon>frmCreation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFormulaire.resx">
-      <DependentUpon>frmFormulaire.cs</DependentUpon>
+    <EmbeddedResource Include="frmForm.resx">
+      <DependentUpon>frmForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

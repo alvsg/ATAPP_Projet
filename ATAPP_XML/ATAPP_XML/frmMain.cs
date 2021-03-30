@@ -20,97 +20,56 @@ namespace ATAPP_XML
     public partial class frmMain : Form
     {
         private string _key;
-        static List<int> countFirst, countLast;
 
-        static List<Fiche> data = new List<Fiche>();
-        fileXML file;
-        Button b;
+        FileXML file;
+        Password pwd;
+        Safe safe;
 
-        public static List<Fiche> Data { get => data; set => data = value; }
         public string Key { get => _key; }
 
-        public frmMain(string s)
+        public frmMain(string key)
         {
             InitializeComponent();
 
-            _key = s;
-            file = new fileXML();
-            Data = file.GetDataInArray();
-            countFirst = Enumerable.Range(0, Data.Count).ToList();
-            file.ActionOnFile(true, Key, "writing");
+            _key = key;
+            file = new FileXML();
+            pwd = new Password();
+            safe = new Safe();
+            pwd.ActionOnFile(true, _key, "writing");
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            UpdateView();
-        }
-
-        private void btnFlp_Click(object sender, EventArgs e)
-        {
-            if (sender is Button btn)
-            {
-                Fiche fiche = Data.Where(f => f.Name == btn.Name).First();
-                frmFormulaire frm = new frmFormulaire(fiche, "ShowData");
-                frm.ShowDialog();
-
-                if (frm.DialogResult == DialogResult.OK)
-                {
-                    //modify
-                }
-            }
+            safe.UpdateViewOfSafe(flpButtonData);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            frmFormulaire frmFormulaire = new frmFormulaire("Ajouter");
-            frmFormulaire.ShowDialog();
-            if (frmFormulaire.DialogResult == DialogResult.OK)
-            {
-                Fiche f = new Fiche();
-
-                f.Name = frmFormulaire.Fiche.Name;
-                f.Username = frmFormulaire.Fiche.Username;
-                f.Password = frmFormulaire.Fiche.Password;
-
-                Data.Add(f);
-            }
-            UpdateView();
-        }
-
-        public void UpdateView()
-        {
-            flowLayoutPanel1.Controls.Clear();
-
-            foreach (Fiche fiche in Data)
-            {
-                b = new Button();
-                b.Name = fiche.Name;
-                b.Text = fiche.Name;
-                b.FlatStyle = FlatStyle.Flat;
-                b.Width = 167;
-                b.Height = 79;
-                b.Click += btnFlp_Click;
-                flowLayoutPanel1.Controls.Add(b);
-            }
+            safe.AddValuesInData();
+            safe.UpdateViewOfSafe(flpButtonData);
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Hide();
-            file.ActionOnFile(false, _key, "writing");
-            countLast = Enumerable.Range(0, Data.Count).ToList();
-            if (countFirst.Count() != countLast.Count())
+            pwd.ActionOnFile(false, _key, "writing");
+            foreach (Record record in safe.Coffre)
             {
-                foreach (Fiche f in Data)
+                int noIndex = safe.Coffre.FindIndex(a => a.Name == record.Name);
+                if (safe.AddedInXmlFile.Contains(noIndex) == true)
                 {
-                    int first = Data.FindIndex(a => a.Name == f.Name);
-                    if(countFirst.Contains(first) == false)
+                    file.InsertDataInFile(record.Username, record.Name, record.Password, noIndex);
+                }
+                else if (safe.ModifiedInXmlFile.Contains(noIndex) == true)
+                {
+                    file.UpdateDataInXml(record.Username, record.Name, record.Password, noIndex);
+                    if (_key != safe.Coffre[0].Password)
                     {
-                        file.InsertDataInFile(f.Username, f.Name, f.Password, first);
+                        _key = safe.Coffre[0].Password;
                     }
                 }
             }
-            file.ActionOnFile(true, _key, "");
+            pwd.ActionOnFile(true, _key, "");
             this.Close();
         }
     }

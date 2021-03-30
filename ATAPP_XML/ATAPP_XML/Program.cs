@@ -16,7 +16,7 @@ namespace ATAPP_XML
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmCon());
+            Application.Run(new frmConnection());
         }
     }
 }

@@ -30,16 +30,16 @@ namespace ATAPP_XML
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpButtonData = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // flowLayoutPanel1
+            // flpButtonData
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1, 55);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(882, 691);
-            this.flowLayoutPanel1.TabIndex = 1;
+            this.flpButtonData.Location = new System.Drawing.Point(1, 55);
+            this.flpButtonData.Name = "flpButtonData";
+            this.flpButtonData.Size = new System.Drawing.Size(882, 691);
+            this.flpButtonData.TabIndex = 1;
             // 
             // btnAdd
             // 
@@ -57,14 +57,13 @@ namespace ATAPP_XML
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(883, 745);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.flpButtonData);
             this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
-//            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.ResumeLayout(false);
@@ -72,7 +71,7 @@ namespace ATAPP_XML
         }
 
         #endregion
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flpButtonData;
         private System.Windows.Forms.Button btnAdd;
     }
 }
