@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ATAPP_XML.FileXML">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAIABAAAAQQGAAgAAAAAEAAAAAJABAAAEAI=</HashCode>
+      <FileName>FileXML.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATAPP_XML.frmConnection">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQEAAQCQAAAAABACAAAADAIAAYEAABAAAAgAQACA=</HashCode>
+      <FileName>frmConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATAPP_XML.frmCreation">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MQQACABAACAAACAAACCAAAICAACAgAAAAqBAAQCQGIE=</HashCode>
+      <FileName>frmCreation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATAPP_XML.frmForm">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAoQEACQAAEgBAQCAACACAOEggEIIAAIhwQABAAA=</HashCode>
+      <FileName>frmForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATAPP_XML.frmMain">
+    <Position X="2.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACCAAAQAAACAAAACAAAAgAAABASAAAAAAAI=</HashCode>
+      <FileName>frmMain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATAPP_XML.Program">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATAPP_XML.Record">
+    <Position X="6" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIAAAAAAAAAAAAQAAAAQAAAAAAAACAAIAAAAAAAA=</HashCode>
+      <FileName>Record.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATAPP_XML.Safe">
+    <Position X="0.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BABAgAAAgAAAAAAAIAIAAAAAAAAAQAAAJAEQAQABgAA=</HashCode>
+      <FileName>Safe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATAPP_XML.Secure">
+    <Position X="4" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AWAQAAAAQAAEAQAAIAAAAAAAAAAAIAAABAAAAAAAABA=</HashCode>
+      <FileName>Secure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATAPP_XML.Properties.Resources">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAIAAAAAAAAAAAABEFAAAQAAEACAAAAAAAAACIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ATAPP_XML.Properties.Settings">
+    <Position X="12.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

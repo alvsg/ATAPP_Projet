@@ -89,6 +89,7 @@ namespace ATAPP_XML
             this.tbxNewPwd.Size = new System.Drawing.Size(252, 20);
             this.tbxNewPwd.TabIndex = 6;
             this.tbxNewPwd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxNewPwd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxKeyDown);
             // 
             // lblConfNewPwd
             // 
@@ -110,6 +111,7 @@ namespace ATAPP_XML
             this.tbxConfNewPwd.Size = new System.Drawing.Size(252, 20);
             this.tbxConfNewPwd.TabIndex = 8;
             this.tbxConfNewPwd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxConfNewPwd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxKeyDown);
             // 
             // btnSetPwd
             // 
@@ -183,7 +185,6 @@ namespace ATAPP_XML
             // 
             // pbxIconNewUser
             // 
-            //this.pbxIconNewUser.Image = global::ATAPP_XML.Properties.Resources.icons8_ajouter_un_utilisateur_homme_100;
             this.pbxIconNewUser.Location = new System.Drawing.Point(12, 12);
             this.pbxIconNewUser.Name = "pbxIconNewUser";
             this.pbxIconNewUser.Size = new System.Drawing.Size(100, 95);
@@ -191,7 +192,7 @@ namespace ATAPP_XML
             this.pbxIconNewUser.TabIndex = 3;
             this.pbxIconNewUser.TabStop = false;
             // 
-            // frmCreate
+            // frmCreation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -213,10 +214,9 @@ namespace ATAPP_XML
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmCreate";
+            this.Name = "frmCreation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Biblio-tech";
-            this.Load += new System.EventHandler(this.frmCreate_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxIconMessage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxNewPwd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxConfPwd)).EndInit();

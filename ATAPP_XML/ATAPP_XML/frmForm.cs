@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * PROJET : Bilbio-tech
+ * AUTEUR : ALVES GUASTTI Letitia (I.FA-P3A)
+ * DESC. : Un gestionnaire de mot de passe
+ * VERSION : 26.01.2021 v.1
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,13 +27,18 @@ namespace ATAPP_XML
         public string NameBtn { get => _action; set => _action = value; }
         public Record Enregistrement { get => _enregistrement; }
 
-        Password pwd;
+        Secure pwd;
+
+        public frmForm()
+        {
+
+        }
 
         public frmForm(string btn)
         {
             InitializeComponent();
 
-            pwd = new Password();
+            pwd = new Secure();
             _action = btn;
             _enregistrement = new Record();
         }
@@ -35,7 +47,7 @@ namespace ATAPP_XML
         {
             InitializeComponent();
 
-            pwd = new Password();
+            pwd = new Secure();
             _enregistrement = fiche;
             _action = btn;
         }
@@ -74,28 +86,29 @@ namespace ATAPP_XML
 
         private void Ajouter()
         {
-            if (tbxName.Text != string.Empty && tbxUsername.Text != string.Empty && tbxPwd.Text != string.Empty)
-            {
-                Enregistrement.Name = tbxName.Text;
-                Enregistrement.Password = tbxPwd.Text;
-                Enregistrement.Username = tbxUsername.Text;
-            }
-        }
-
-        public void CloseThis()
-        {
-            ActiveForm.Close();
+            Enregistrement.Name = tbxName.Text;
+            Enregistrement.Password = tbxPwd.Text;
+            Enregistrement.Username = tbxUsername.Text;
         }
 
         private void btnAction_Click(object sender, EventArgs e)
         {
             if (btnAction.Text == "Ajouter")
             {
-                Ajouter();
+                if (tbxName.Text != string.Empty && tbxUsername.Text != string.Empty && tbxPwd.Text != string.Empty)
+                {
+                    Ajouter();
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    lblMessage.Visible = true;
+                }
             }
             else
             {
                 Save();
+                this.DialogResult = DialogResult.OK;
             }
         }
 
@@ -152,11 +165,13 @@ namespace ATAPP_XML
                 {
                     Enregistrement.Name = tbxName.Text;
                 }
-                else if (tbxPwd.Text != string.Empty && tbxPwd.Text != Enregistrement.Password)
+
+                if (tbxPwd.Text != string.Empty && tbxPwd.Text != Enregistrement.Password)
                 {
                     Enregistrement.Password = tbxPwd.Text;
                 }
-                else if (tbxUsername.Text != string.Empty && tbxUsername.Text != Enregistrement.Username)
+
+                if (tbxUsername.Text != string.Empty && tbxUsername.Text != Enregistrement.Username)
                 {
                     Enregistrement.Username = tbxUsername.Text;
                 }

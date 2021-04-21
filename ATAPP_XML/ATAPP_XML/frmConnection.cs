@@ -20,16 +20,16 @@ namespace ATAPP_XML
 {
     public partial class frmConnection : Form
     {
-        static string result;
+        static bool result;
         FileXML file;
-        Password password;
+        Secure password;
 
         public frmConnection()
         {
             InitializeComponent();
 
             file = new FileXML();
-            password = new Password();
+            password = new Secure();
             result = file.VerifyIfExist();
         }
 
@@ -45,11 +45,11 @@ namespace ATAPP_XML
 
         private void btnCon_Click(object sender, EventArgs e)
         {
-            file.Error = null;
+            password.Error = null;
             if (tbxConPwd.Text != string.Empty)
             {
                 password.ActionOnFile(false, tbxConPwd.Text, "");
-                if (file.Error == null)
+                if (password.Error == null)
                 {
                     CloseThis(tbxConPwd.Text);
                 }
@@ -77,12 +77,20 @@ namespace ATAPP_XML
         /// </summary>
         public void VerifyIfFirstOpen()
         {
-            if (result != "1")
+            if (!result)
             {
                 this.Hide();
                 frmCreation form = new frmCreation();
                 form.ShowDialog();
                 this.Close();
+            }
+        }
+
+        private void tbxConPwd_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnCon.PerformClick();
             }
         }
     }

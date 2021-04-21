@@ -7,27 +7,26 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data; //Add
 using System.IO; //Add
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.InteropServices; //Added
 using System.Xml.Linq; //Added
-using System.Xml;
 
 namespace ATAPP_XML
 {
     class FileXML
     {
-        private string _username, _dirPath, _filePath, _file, _error;
+        private string _username, _dirPath, _filePath, _file;
 
         public string Username { get => _username; }
         public string DirPath { get => _dirPath; }
         public string FilePath { get => _filePath; }
         public string xmlFile { get => _file; }
-        public string Error { get => _error; set => _error = value; }
 
+        /// <summary>
+        /// Constructeur principal de la classe FileXML
+        /// </summary>
         public FileXML()
         {
             _username = Environment.UserName;
@@ -40,20 +39,20 @@ namespace ATAPP_XML
         /// Méthode qui permet de vérifier si le dossier et le fichier XML existent
         /// </summary>
         /// <returns> L'action qui a été effectué </returns>
-        public string VerifyIfExist()
+        public bool VerifyIfExist()
         {
-            //Si le dossier n'existe pas
+            // Boucle qui vérifie si le dossier n'existe pas
             if (!Directory.Exists(_dirPath))
             {
                 Directory.CreateDirectory(_dirPath);
-                return "0";
+                return false;
             }
-            //Sinon si le fichier XML n'existe pas
+            // Boucle qui vérifie si le fichier XML n'existe pas
             else if (!File.Exists(_filePath + ".aes"))
             {
-                return "0";
+                return false;
             }
-            return "1";
+            return true;
         }
 
         /// <summary>
@@ -66,21 +65,27 @@ namespace ATAPP_XML
         }
 
         /// <summary>
-        /// Méthode qui permet d'insérer des données dans le fichier xml.
+        /// Méthode qui permet d'insérer des données dans le fichier xml
         /// </summary>
-        /// <param name="userName"> Le nom d'utilisateur de Windows </param>
-        /// <param name="password"> Le mot de passe de l'utilisateur </param>
+        /// <param name="userName"></param>
+        /// <param name="nameOf"></param>
+        /// <param name="password"></param>
+        /// <param name="noIndex"></param>
         public void InsertDataInFile(string userName, string nameOf, string password, int noIndex)
         {
             XDocument xmlFile = XDocument.Load(_filePath);
 
+            // Déclaration des balises
             XElement name = new XElement("name", nameOf);
             XElement username = new XElement("username", userName);
             XElement pwd = new XElement("pwd", password);
             XElement id = new XElement("id");
 
+            // Ajout de l'attribut à la balise index
             id.SetAttributeValue("num", noIndex);
+            // Ajout de la balise index au fichier XML
             xmlFile.Root.Add(id);
+            // Ajout des balises enfants dans la balise index (parent)
             id.Add(name, username, pwd);
             xmlFile.Save(_filePath);
         }
@@ -91,6 +96,7 @@ namespace ATAPP_XML
         /// <param name="file"> Le nom du fichier chercher </param>
         public void IFExist(string file)
         {
+            // Boucle qui vérifie si le fichier chercher existe
             if (File.Exists(file))
             {
                 File.Delete(file);
@@ -106,6 +112,7 @@ namespace ATAPP_XML
             List<Record> data = new List<Record>();
             XDocument xmlFile = XDocument.Load(_filePath);
 
+            // Boucle qui parcour les données dans le fichiers XML
             foreach (XElement element in xmlFile.Descendants("data").Nodes().ToList())
             {
                 data.Add(new Record(element.Element("username").Value, element.Element("pwd").Value, element.Element("name").Value));
@@ -114,6 +121,13 @@ namespace ATAPP_XML
             return data;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="nameOf"></param>
+        /// <param name="password"></param>
+        /// <param name="noIndex"></param>
         public void UpdateDataInXml(string userName, string nameOf, string password, int noIndex)
         {
             XDocument xmlFile = XDocument.Load(_filePath);

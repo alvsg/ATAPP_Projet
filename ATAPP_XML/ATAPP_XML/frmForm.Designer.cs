@@ -30,6 +30,7 @@ namespace ATAPP_XML
         private void InitializeComponent()
         {
             this.gbxFormulaire = new System.Windows.Forms.GroupBox();
+            this.lblMessage = new System.Windows.Forms.Label();
             this.cbxRandomPasswordM = new System.Windows.Forms.CheckBox();
             this.pbxPwdM = new System.Windows.Forms.PictureBox();
             this.lblPwd = new System.Windows.Forms.Label();
@@ -49,6 +50,7 @@ namespace ATAPP_XML
             // 
             // gbxFormulaire
             // 
+            this.gbxFormulaire.Controls.Add(this.lblMessage);
             this.gbxFormulaire.Controls.Add(this.cbxRandomPasswordM);
             this.gbxFormulaire.Controls.Add(this.pbxPwdM);
             this.gbxFormulaire.Controls.Add(this.lblPwd);
@@ -68,6 +70,17 @@ namespace ATAPP_XML
             this.gbxFormulaire.TabIndex = 0;
             this.gbxFormulaire.TabStop = false;
             this.gbxFormulaire.Text = "Information";
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.Location = new System.Drawing.Point(6, 123);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(351, 16);
+            this.lblMessage.TabIndex = 17;
+            this.lblMessage.Text = "Veuillez remplir tous les champs !";
+            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblMessage.Visible = false;
             // 
             // cbxRandomPasswordM
             // 
@@ -120,7 +133,6 @@ namespace ATAPP_XML
             // 
             // btnAction
             // 
-            this.btnAction.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAction.Location = new System.Drawing.Point(184, 142);
             this.btnAction.Name = "btnAction";
             this.btnAction.Size = new System.Drawing.Size(139, 23);
@@ -191,13 +203,13 @@ namespace ATAPP_XML
             this.lblNomT.TabIndex = 0;
             this.lblNomT.Text = "Nom site/logiciel:";
             // 
-            // frmFormulaire
+            // frmForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(394, 196);
             this.Controls.Add(this.gbxFormulaire);
-            this.Name = "frmFormulaire";
+            this.Name = "frmForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmFormulaire";
             this.Load += new System.EventHandler(this.frmFormulaire_Load);
@@ -224,5 +236,6 @@ namespace ATAPP_XML
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.PictureBox pbxPwdM;
         private System.Windows.Forms.CheckBox cbxRandomPasswordM;
+        private System.Windows.Forms.Label lblMessage;
     }
 }

@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * PROJET : Bilbio-tech
+ * AUTEUR : ALVES GUASTTI Letitia (I.FA-P3A)
+ * DESC. : Un gestionnaire de mot de passe
+ * VERSION : 26.01.2021 v.1
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

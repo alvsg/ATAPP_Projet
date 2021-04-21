@@ -72,6 +72,7 @@ namespace ATAPP_XML
             this.tbxConPwd.Size = new System.Drawing.Size(334, 22);
             this.tbxConPwd.TabIndex = 3;
             this.tbxConPwd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxConPwd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxConPwd_KeyDown);
             // 
             // lblExit
             // 
@@ -129,7 +130,7 @@ namespace ATAPP_XML
             this.pbxWarning.TabStop = false;
             this.pbxWarning.Visible = false;
             // 
-            // frmCon
+            // frmConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -149,7 +150,7 @@ namespace ATAPP_XML
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmCon";
+            this.Name = "frmConnection";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connexion";
             this.Load += new System.EventHandler(this.frmCon_Load);

@@ -22,7 +22,7 @@ namespace ATAPP_XML
         private string _key;
 
         FileXML file;
-        Password pwd;
+        Secure pwd;
         Safe safe;
 
         public string Key { get => _key; }
@@ -31,46 +31,31 @@ namespace ATAPP_XML
         {
             InitializeComponent();
 
-            _key = key;
+            this._key = key;
             file = new FileXML();
-            pwd = new Password();
-            safe = new Safe();
-            pwd.ActionOnFile(true, _key, "writing");
+            pwd = new Secure();
+            safe = new Safe(this);
+            pwd.ActionOnFile(true, this._key, "writing");
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            safe.UpdateViewOfSafe(flpButtonData);
+            safe.UpdateOnLoad(flpButtonData);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             safe.AddValuesInData();
-            safe.UpdateViewOfSafe(flpButtonData);
+            safe.CreateButton(safe.NewRecord, flpButtonData);
         }
 
-        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void flpButtonData_ControlAdded(object sender, ControlEventArgs e)
         {
-            this.Hide();
-            pwd.ActionOnFile(false, _key, "writing");
-            foreach (Record record in safe.Coffre)
+            if (flpButtonData.Controls.Count >= 2)
             {
-                int noIndex = safe.Coffre.FindIndex(a => a.Name == record.Name);
-                if (safe.AddedInXmlFile.Contains(noIndex) == true)
-                {
-                    file.InsertDataInFile(record.Username, record.Name, record.Password, noIndex);
-                }
-                else if (safe.ModifiedInXmlFile.Contains(noIndex) == true)
-                {
-                    file.UpdateDataInXml(record.Username, record.Name, record.Password, noIndex);
-                    if (_key != safe.Coffre[0].Password)
-                    {
-                        _key = safe.Coffre[0].Password;
-                    }
-                }
+                pwd.addInFile(_key, safe);
             }
-            pwd.ActionOnFile(true, _key, "");
-            this.Close();
+            
         }
     }
 }

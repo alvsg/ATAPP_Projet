@@ -21,14 +21,14 @@ namespace ATAPP_XML
     {
         static bool isClicked1 = false, isClicked2 = false;
         FileXML fileXML;
-        Password pwd;
+        Secure pwd;
 
         public frmCreation()
         {
             InitializeComponent();
 
             fileXML = new FileXML();
-            pwd = new Password();
+            pwd = new Secure();
         }
 
         private void btnSetPwd_Click(object sender, EventArgs e)
@@ -107,9 +107,12 @@ namespace ATAPP_XML
             }
         }
 
-        private void frmCreate_Load(object sender, EventArgs e)
+        private void tbxKeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSetPwd.PerformClick();
+            }
         }
 
         /// <summary>

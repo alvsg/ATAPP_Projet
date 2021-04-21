@@ -1,7 +1,7 @@
 ﻿
 namespace ATAPP_XML
 {
-    partial class frmFormulaire
+    partial class frmForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,6 +30,8 @@ namespace ATAPP_XML
         private void InitializeComponent()
         {
             this.gbxFormulaire = new System.Windows.Forms.GroupBox();
+            this.cbxRandomPasswordM = new System.Windows.Forms.CheckBox();
+            this.pbxPwdM = new System.Windows.Forms.PictureBox();
             this.lblPwd = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
@@ -41,8 +43,6 @@ namespace ATAPP_XML
             this.lblUsernameT = new System.Windows.Forms.Label();
             this.tbxName = new System.Windows.Forms.TextBox();
             this.lblNomT = new System.Windows.Forms.Label();
-            this.pbxPwdM = new System.Windows.Forms.PictureBox();
-            this.cbxRandomPasswordM = new System.Windows.Forms.CheckBox();
             this.gbxFormulaire.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPwdM)).BeginInit();
             this.SuspendLayout();
@@ -68,7 +68,31 @@ namespace ATAPP_XML
             this.gbxFormulaire.TabIndex = 0;
             this.gbxFormulaire.TabStop = false;
             this.gbxFormulaire.Text = "Information";
-//            this.gbxFormulaire.Enter += new System.EventHandler(this.gbxFormulaire_Enter);
+            // 
+            // cbxRandomPasswordM
+            // 
+            this.cbxRandomPasswordM.AutoSize = true;
+            this.cbxRandomPasswordM.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.cbxRandomPasswordM.Location = new System.Drawing.Point(106, 101);
+            this.cbxRandomPasswordM.Name = "cbxRandomPasswordM";
+            this.cbxRandomPasswordM.Size = new System.Drawing.Size(244, 20);
+            this.cbxRandomPasswordM.TabIndex = 16;
+            this.cbxRandomPasswordM.Text = "Génération de mot de passe aléatoire";
+            this.cbxRandomPasswordM.UseVisualStyleBackColor = true;
+            this.cbxRandomPasswordM.Visible = false;
+            this.cbxRandomPasswordM.CheckedChanged += new System.EventHandler(this.cbxRandomPasswordM_CheckedChanged);
+            // 
+            // pbxPwdM
+            // 
+            this.pbxPwdM.Image = global::ATAPP_XML.Properties.Resources.icons8_invisible_24;
+            this.pbxPwdM.Location = new System.Drawing.Point(329, 74);
+            this.pbxPwdM.Name = "pbxPwdM";
+            this.pbxPwdM.Size = new System.Drawing.Size(21, 21);
+            this.pbxPwdM.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxPwdM.TabIndex = 13;
+            this.pbxPwdM.TabStop = false;
+            this.pbxPwdM.Visible = false;
+            this.pbxPwdM.Click += new System.EventHandler(this.pbxNewPwd_Click);
             // 
             // lblPwd
             // 
@@ -163,34 +187,9 @@ namespace ATAPP_XML
             this.lblNomT.AutoSize = true;
             this.lblNomT.Location = new System.Drawing.Point(7, 30);
             this.lblNomT.Name = "lblNomT";
-            this.lblNomT.Size = new System.Drawing.Size(35, 13);
+            this.lblNomT.Size = new System.Drawing.Size(88, 13);
             this.lblNomT.TabIndex = 0;
-            this.lblNomT.Text = "Nom :";
-            // 
-            // pbxPwdM
-            // 
-            this.pbxPwdM.Image = global::ATAPP_XML.Properties.Resources.icons8_invisible_24;
-            this.pbxPwdM.Location = new System.Drawing.Point(329, 74);
-            this.pbxPwdM.Name = "pbxPwdM";
-            this.pbxPwdM.Size = new System.Drawing.Size(21, 21);
-            this.pbxPwdM.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbxPwdM.TabIndex = 13;
-            this.pbxPwdM.TabStop = false;
-            this.pbxPwdM.Visible = false;
-            this.pbxPwdM.Click += new System.EventHandler(this.pbxNewPwd_Click);
-            // 
-            // cbxRandomPasswordM
-            // 
-            this.cbxRandomPasswordM.AutoSize = true;
-            this.cbxRandomPasswordM.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.cbxRandomPasswordM.Location = new System.Drawing.Point(106, 101);
-            this.cbxRandomPasswordM.Name = "cbxRandomPasswordM";
-            this.cbxRandomPasswordM.Size = new System.Drawing.Size(244, 20);
-            this.cbxRandomPasswordM.TabIndex = 16;
-            this.cbxRandomPasswordM.Text = "Génération de mot de passe aléatoire";
-            this.cbxRandomPasswordM.UseVisualStyleBackColor = true;
-            this.cbxRandomPasswordM.Visible = false;
-            this.cbxRandomPasswordM.CheckedChanged += new System.EventHandler(this.cbxRandomPasswordM_CheckedChanged);
+            this.lblNomT.Text = "Nom site/logiciel:";
             // 
             // frmFormulaire
             // 

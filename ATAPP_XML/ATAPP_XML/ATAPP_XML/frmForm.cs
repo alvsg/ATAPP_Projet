@@ -10,33 +10,33 @@ using System.Windows.Forms;
 
 namespace ATAPP_XML
 {
-    public partial class frmFormulaire : Form
+    public partial class frmForm : Form
     {
-        private Fiche _fiche;
+        private Record _enregistrement;
         private string _action;
 
         static bool clicked = false;
 
         public string NameBtn { get => _action; set => _action = value; }
-        public Fiche Fiche { get => _fiche; }
+        public Record Enregistrement { get => _enregistrement; }
 
         Password pwd;
 
-        public frmFormulaire(string btn)
+        public frmForm(string btn)
         {
             InitializeComponent();
 
             pwd = new Password();
             _action = btn;
-            _fiche = new Fiche();
+            _enregistrement = new Record();
         }
 
-        public frmFormulaire(Fiche fiche, string btn)
+        public frmForm(Record fiche, string btn)
         {
             InitializeComponent();
 
             pwd = new Password();
-            _fiche = fiche;
+            _enregistrement = fiche;
             _action = btn;
         }
 
@@ -46,9 +46,9 @@ namespace ATAPP_XML
             {
                 case "ShowData":
                     btnAction.Text = "Enregistrer";
-                    lblName.Text = Fiche.Name;
-                    lblUsername.Text = Fiche.Username;
-                    for (int i = 0; i < Fiche.Password.Length; i++)
+                    lblName.Text = Enregistrement.Name;
+                    lblUsername.Text = Enregistrement.Username;
+                    for (int pwdLenght = 0; pwdLenght < Enregistrement.Password.Length; pwdLenght++)
                     {
                         lblPwd.Text += "*";
                     }
@@ -76,9 +76,9 @@ namespace ATAPP_XML
         {
             if (tbxName.Text != string.Empty && tbxUsername.Text != string.Empty && tbxPwd.Text != string.Empty)
             {
-                Fiche.Name = tbxName.Text;
-                Fiche.Password = tbxPwd.Text;
-                Fiche.Username = tbxUsername.Text;
+                Enregistrement.Name = tbxName.Text;
+                Enregistrement.Password = tbxPwd.Text;
+                Enregistrement.Username = tbxUsername.Text;
             }
         }
 
@@ -104,13 +104,13 @@ namespace ATAPP_XML
             pbxPwdM.Visible = true;
             cbxRandomPasswordM.Visible = true;
 
-            if (Fiche.Name == "Biblio-tech")
+            if (Enregistrement.Name == "Biblio-tech")
             {
                 lblPwd.Visible = false;
 
                 tbxPwd.Visible = true;
 
-                tbxPwd.Text = Fiche.Password;
+                tbxPwd.Text = Enregistrement.Password;
             }
             else
             {
@@ -122,9 +122,9 @@ namespace ATAPP_XML
                 tbxPwd.Visible = true;
                 tbxUsername.Visible = true;
 
-                tbxName.Text = Fiche.Name;
-                tbxUsername.Text = Fiche.Username;
-                tbxPwd.Text = Fiche.Password;
+                tbxName.Text = Enregistrement.Name;
+                tbxUsername.Text = Enregistrement.Username;
+                tbxPwd.Text = Enregistrement.Password;
             }
 
             btnModify.Enabled = false;
@@ -136,11 +136,11 @@ namespace ATAPP_XML
             btnModify.Enabled = true;
             btnAction.Visible = false;
 
-            if (Fiche.Name == "Biblio-tech")
+            if (Enregistrement.Name == "Biblio-tech")
             {
-                if (tbxPwd.Text != Fiche.Password)
+                if (tbxPwd.Text != Enregistrement.Password)
                 {
-                    Fiche.Password = tbxPwd.Text;
+                    Enregistrement.Password = tbxPwd.Text;
                 }
 
                 lblPwd.Visible = true;
@@ -148,17 +148,17 @@ namespace ATAPP_XML
             }
             else
             {
-                if (tbxName.Text != string.Empty && tbxName.Text != Fiche.Name)
+                if (tbxName.Text != string.Empty && tbxName.Text != Enregistrement.Name)
                 {
-                    Fiche.Name = tbxName.Text;
+                    Enregistrement.Name = tbxName.Text;
                 }
-                else if (tbxPwd.Text != string.Empty && tbxPwd.Text != Fiche.Password)
+                else if (tbxPwd.Text != string.Empty && tbxPwd.Text != Enregistrement.Password)
                 {
-                    Fiche.Password = tbxPwd.Text;
+                    Enregistrement.Password = tbxPwd.Text;
                 }
-                else if (tbxUsername.Text != string.Empty && tbxUsername.Text != Fiche.Username)
+                else if (tbxUsername.Text != string.Empty && tbxUsername.Text != Enregistrement.Username)
                 {
-                    Fiche.Username = tbxUsername.Text;
+                    Enregistrement.Username = tbxUsername.Text;
                 }
 
                 lblName.Visible = true;

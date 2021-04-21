@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATAPP_XML
 {
-    public class Fiche
+    public class Record
     {
         private string _username;
         private string _password;
@@ -16,12 +16,12 @@ namespace ATAPP_XML
         public string Password { get => _password; set => _password = value; }
         public string Name { get => _name; set => _name = value; }
 
-        public Fiche()
+        public Record()
         {
 
         }
 
-        public Fiche(string username, string password, string name)
+        public Record(string username, string password, string name)
         {
             _username = username;
             _password = password;
