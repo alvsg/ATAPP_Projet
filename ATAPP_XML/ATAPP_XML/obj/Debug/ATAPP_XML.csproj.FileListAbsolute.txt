@@ -36,3 +36,16 @@ C:\Users\ALVSGL\Desktop\ATAPP_XML\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.csproj
 C:\Users\ALVSGL\Desktop\ATAPP_XML\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.csproj.CoreCompileInputs.cache
 C:\Users\ALVSGL\Desktop\ATAPP_XML\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.exe
 C:\Users\ALVSGL\Desktop\ATAPP_XML\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.pdb
+C:\Users\YoneH\Desktop\ATAPP_XML\ATAPP_XML\bin\Debug\ATAPP_XML.exe.config
+C:\Users\YoneH\Desktop\ATAPP_XML\ATAPP_XML\bin\Debug\ATAPP_XML.exe
+C:\Users\YoneH\Desktop\ATAPP_XML\ATAPP_XML\bin\Debug\ATAPP_XML.pdb
+C:\Users\YoneH\Desktop\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.csprojAssemblyReference.cache
+C:\Users\YoneH\Desktop\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.frmConnection.resources
+C:\Users\YoneH\Desktop\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.frmCreation.resources
+C:\Users\YoneH\Desktop\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.frmForm.resources
+C:\Users\YoneH\Desktop\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.frmMain.resources
+C:\Users\YoneH\Desktop\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.Properties.Resources.resources
+C:\Users\YoneH\Desktop\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.csproj.GenerateResource.cache
+C:\Users\YoneH\Desktop\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.csproj.CoreCompileInputs.cache
+C:\Users\YoneH\Desktop\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.exe
+C:\Users\YoneH\Desktop\ATAPP_XML\ATAPP_XML\obj\Debug\ATAPP_XML.pdb
