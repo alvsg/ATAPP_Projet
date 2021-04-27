@@ -28,6 +28,12 @@ namespace ATAPP_XML
 
         }
 
+        /// <summary>
+        /// Constructeur principal de la classe Record
+        /// </summary>
+        /// <param name="username"> Le nom d'utilisateur </param>
+        /// <param name="password"> Le mot de passe </param>
+        /// <param name="name"> Le nom du site/du logiciel </param>
         public Record(string username, string password, string name)
         {
             _username = username;

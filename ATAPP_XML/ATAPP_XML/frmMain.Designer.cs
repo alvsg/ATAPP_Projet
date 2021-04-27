@@ -34,17 +34,17 @@ namespace ATAPP_XML
             this.mspMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.couperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.collerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.séléctionnerToutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.importerUnCoffreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exporterUnCoffreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.couperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.collerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.séléctionnerToutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mspMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,6 +85,35 @@ namespace ATAPP_XML
             this.ajouterToolStripMenuItem.Name = "ajouterToolStripMenuItem";
             this.ajouterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ajouterToolStripMenuItem.Text = "Nouveau";
+            this.ajouterToolStripMenuItem.Click += new System.EventHandler(this.ajouterToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // importerUnCoffreToolStripMenuItem
+            // 
+            this.importerUnCoffreToolStripMenuItem.Name = "importerUnCoffreToolStripMenuItem";
+            this.importerUnCoffreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importerUnCoffreToolStripMenuItem.Text = "Importer un coffre...";
+            // 
+            // exporterUnCoffreToolStripMenuItem
+            // 
+            this.exporterUnCoffreToolStripMenuItem.Name = "exporterUnCoffreToolStripMenuItem";
+            this.exporterUnCoffreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exporterUnCoffreToolStripMenuItem.Text = "Exporter un coffre...";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            // 
+            // quitterToolStripMenuItem
+            // 
+            this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.quitterToolStripMenuItem.Text = "Quitter";
             // 
             // editToolStripMenuItem
             // 
@@ -119,45 +148,17 @@ namespace ATAPP_XML
             this.collerToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.collerToolStripMenuItem.Text = "Coller";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(203, 6);
+            // 
             // séléctionnerToutToolStripMenuItem
             // 
             this.séléctionnerToutToolStripMenuItem.Name = "séléctionnerToutToolStripMenuItem";
             this.séléctionnerToutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.séléctionnerToutToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.séléctionnerToutToolStripMenuItem.Text = "Séléctionner tout";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(203, 6);
-            // 
-            // quitterToolStripMenuItem
-            // 
-            this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.quitterToolStripMenuItem.Text = "Quitter";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
-            // 
-            // importerUnCoffreToolStripMenuItem
-            // 
-            this.importerUnCoffreToolStripMenuItem.Name = "importerUnCoffreToolStripMenuItem";
-            this.importerUnCoffreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.importerUnCoffreToolStripMenuItem.Text = "Importer un coffre...";
-            // 
-            // exporterUnCoffreToolStripMenuItem
-            // 
-            this.exporterUnCoffreToolStripMenuItem.Name = "exporterUnCoffreToolStripMenuItem";
-            this.exporterUnCoffreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exporterUnCoffreToolStripMenuItem.Text = "Exporter un coffre...";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // frmMain
             // 

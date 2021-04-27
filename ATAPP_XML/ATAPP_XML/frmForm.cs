@@ -21,11 +21,13 @@ namespace ATAPP_XML
     {
         private Record _enregistrement;
         private string _action;
+        private List<Record> _list;
 
         static bool clicked = false;
 
         public string NameBtn { get => _action; set => _action = value; }
         public Record Enregistrement { get => _enregistrement; }
+        public List<Record> List { get => _list; set => _list = value; }
 
         Secure pwd;
 
@@ -34,6 +36,10 @@ namespace ATAPP_XML
 
         }
 
+        /// <summary>
+        /// Constructeur principal qui prend le bouton préssé
+        /// </summary>
+        /// <param name="btn"> Le nom du bouton sur lequel l'utilisateur appuié </param>
         public frmForm(string btn)
         {
             InitializeComponent();
@@ -43,28 +49,33 @@ namespace ATAPP_XML
             _enregistrement = new Record();
         }
 
-        public frmForm(Record fiche, string btn)
+        public frmForm(Record fiche, string btn, List<Record> record)
         {
             InitializeComponent();
 
             pwd = new Secure();
             _enregistrement = fiche;
             _action = btn;
+            _list = record;
         }
 
+        /// <summary>
+        /// Méthode qui permet de définir si l'utilisateur ajoute ou modifie des données
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmFormulaire_Load(object sender, EventArgs e)
         {
             switch (_action)
             {
                 case "ShowData":
-                    btnAction.Text = "Enregistrer";
+                    btnAction.Text = "Supprimer";
                     lblName.Text = Enregistrement.Name;
                     lblUsername.Text = Enregistrement.Username;
                     for (int pwdLenght = 0; pwdLenght < Enregistrement.Password.Length; pwdLenght++)
                     {
                         lblPwd.Text += "*";
                     }
-                    btnAction.Enabled = false;
                     break;
 
                 case "Ajouter":
@@ -84,6 +95,9 @@ namespace ATAPP_XML
             }
         }
 
+        /// <summary>
+        /// Méthode qui permet d'ajouter des données
+        /// </summary>
         private void Ajouter()
         {
             Enregistrement.Name = tbxName.Text;
@@ -91,32 +105,55 @@ namespace ATAPP_XML
             Enregistrement.Username = tbxUsername.Text;
         }
 
+        /// <summary>
+        /// Méthode qui permet de lancer l'ajout ou la sauvegrade (modification) des données lors du clique d'un bouton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAction_Click(object sender, EventArgs e)
         {
+            // Boucle qui vérifie le texte du bouton
             if (btnAction.Text == "Ajouter")
             {
-                if (tbxName.Text != string.Empty && tbxUsername.Text != string.Empty && tbxPwd.Text != string.Empty)
+                // Boucle qui vérifie si les champs ne sont pas vide
+                if (tbxName.Text != string.Empty && tbxUsername.Text != string.Empty && tbxPwd.Text != string.Empty && tbxName.Text != "Biblio-ch")
                 {
                     Ajouter();
                     this.DialogResult = DialogResult.OK;
                 }
                 else
                 {
+                    if (tbxName.Text == "Biblio-ch")
+                    {
+                        lblMessage.Text = "Entrée incorrect !";
+                    }
                     lblMessage.Visible = true;
                 }
             }
-            else
+            else if (btnAction.Text == "Enregistrer")
             {
                 Save();
                 this.DialogResult = DialogResult.OK;
             }
+            else if (btnAction.Text == "Supprimer")
+            {
+                Delete();
+                this.DialogResult = DialogResult.Cancel;
+            }
         }
 
+        /// <summary>
+        /// Méthode qui permet de modifier les données
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModify_Click(object sender, EventArgs e)
         {
+            btnAction.Text = "Enregistrer";
             pbxPwdM.Visible = true;
             cbxRandomPasswordM.Visible = true;
 
+            // Boucle qui vérifie que ce ne soit pas la première ligne
             if (Enregistrement.Name == "Biblio-tech")
             {
                 lblPwd.Visible = false;
@@ -144,13 +181,18 @@ namespace ATAPP_XML
             btnAction.Enabled = true;
         }
 
+        /// <summary>
+        /// Méthode qui permet de sauvegarder la modificaion des données
+        /// </summary>
         public void Save()
         {
             btnModify.Enabled = true;
             btnAction.Visible = false;
 
+            // Boucle qui vérifie que ce ne soit pas la première ligne
             if (Enregistrement.Name == "Biblio-tech")
             {
+                // Boucle qui vérifie si le mot de passe dans la textBox de modification n'est pas égale a l'ancien mot de passe 
                 if (tbxPwd.Text != Enregistrement.Password)
                 {
                     Enregistrement.Password = tbxPwd.Text;
@@ -161,16 +203,19 @@ namespace ATAPP_XML
             }
             else
             {
+                // Boucle qui vérifie si le nom dans la textBox de modification n'est pas égale a l'ancien nom
                 if (tbxName.Text != string.Empty && tbxName.Text != Enregistrement.Name)
                 {
                     Enregistrement.Name = tbxName.Text;
                 }
 
+                // Boucle qui vérifie si le mot de passe dans la textBox de modification n'est pas égale a l'ancien mot de passe 
                 if (tbxPwd.Text != string.Empty && tbxPwd.Text != Enregistrement.Password)
                 {
                     Enregistrement.Password = tbxPwd.Text;
                 }
 
+                // Boucle qui vérifie si le nom d'utilisateur dans la textBox de modification n'est pas égale a l'ancien nom d'utilisateur
                 if (tbxUsername.Text != string.Empty && tbxUsername.Text != Enregistrement.Username)
                 {
                     Enregistrement.Username = tbxUsername.Text;
@@ -186,8 +231,14 @@ namespace ATAPP_XML
             }
         }
 
+        /// <summary>
+        /// Méthode qui permet d'afficher ou non le mot de passe
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pbxNewPwd_Click(object sender, EventArgs e)
         {
+            // Boucle qui vérifier si la pictureBox est cliqué
             if (!clicked)
             {
                 pbxPwdM.Image = Properties.Resources.icons8_visible_24__1_;
@@ -202,8 +253,14 @@ namespace ATAPP_XML
             }
         }
 
+        /// <summary>
+        /// Méthode qui permet de générer un mot de passe
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbxRandomPasswordM_CheckedChanged(object sender, EventArgs e)
         {
+            // Boucle qui permet de vérifier si le comboBox est cliqué
             if (cbxRandomPasswordM.Checked)
             {
                 string GeneratedPwd = pwd.GeneratorRandom();
@@ -213,6 +270,11 @@ namespace ATAPP_XML
             {
                 tbxPwd.Text = "";
             }
+        }
+
+        private void Delete()
+        {
+
         }
     }
 }

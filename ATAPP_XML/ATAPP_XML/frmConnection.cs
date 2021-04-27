@@ -24,6 +24,9 @@ namespace ATAPP_XML
         FileXML file;
         Secure password;
 
+        /// <summary>
+        /// Constructeur principal de la classe frmConnection
+        /// </summary>
         public frmConnection()
         {
             InitializeComponent();
@@ -33,22 +36,39 @@ namespace ATAPP_XML
             result = file.VerifyIfExist();
         }
 
+        /// <summary>
+        /// Méthode qui permet lors de l'ouverture si l'application est ouverte pour la première fois
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmCon_Load(object sender, EventArgs e)
         {
             VerifyIfFirstOpen();
         }
 
+        /// <summary>
+        /// Méthode qui permet de quitter l'application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lblExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        /// <summary>
+        /// Méthode qui permet de se connecter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCon_Click(object sender, EventArgs e)
         {
             password.Error = null;
+            // Boucle qui vérifie que le champs n'est pas vide
             if (tbxConPwd.Text != string.Empty)
             {
                 password.ActionOnFile(false, tbxConPwd.Text, "");
+                // Boucle qui vérifie qu'il n'y est aucune erreur
                 if (password.Error == null)
                 {
                     CloseThis(tbxConPwd.Text);
@@ -77,6 +97,7 @@ namespace ATAPP_XML
         /// </summary>
         public void VerifyIfFirstOpen()
         {
+            // Boucle qui vérifie le resultat
             if (!result)
             {
                 this.Hide();
@@ -86,8 +107,14 @@ namespace ATAPP_XML
             }
         }
 
+        /// <summary>
+        /// Méthode qui permet de se connecter en appuyant sur la touche Entrer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbxConPwd_KeyDown(object sender, KeyEventArgs e)
         {
+            // Boucle qui vérifie si la touche est la touche Entrer
             if (e.KeyCode == Keys.Enter)
             {
                 btnCon.PerformClick();

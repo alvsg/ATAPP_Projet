@@ -21,41 +21,61 @@ namespace ATAPP_XML
     {
         private string _key;
 
-        FileXML file;
         Secure pwd;
         Safe safe;
 
         public string Key { get => _key; }
 
+        /// <summary>
+        /// Constructeur principal de la classe frmMain avec le mot de passe en paramètre
+        /// </summary>
+        /// <param name="key"> Le mot de passe de l'utilisateur </param>
         public frmMain(string key)
         {
             InitializeComponent();
 
             this._key = key;
-            file = new FileXML();
             pwd = new Secure();
             safe = new Safe(this);
             pwd.ActionOnFile(true, this._key, "writing");
         }
 
+        /// <summary>
+        /// Méthode qui permet de mettre à jour l'affichage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmMain_Load(object sender, EventArgs e)
         {
             safe.UpdateOnLoad(flpButtonData);
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            safe.AddValuesInData();
-            safe.CreateButton(safe.NewRecord, flpButtonData);
-        }
-
+        /// <summary>
+        /// Méthode qui permet d'ajouter les données dans le fichier XML lors de l'ajout d'un bouton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void flpButtonData_ControlAdded(object sender, ControlEventArgs e)
         {
-            if (flpButtonData.Controls.Count >= 2)
+            if (flpButtonData.Controls.Count > safe.NoDonnee)
             {
                 pwd.addInFile(_key, safe);
+                safe.NoDonnee++;
             }
-            
+        }
+
+        /// <summary>
+        /// Méthode qui permet d'ajouter une donnée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            safe.AddValuesInData();
+            if (!safe.Cancel)
+            {
+                safe.CreateButton(safe.NewRecord, flpButtonData);
+            }
         }
     }
 }

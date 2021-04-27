@@ -23,6 +23,9 @@ namespace ATAPP_XML
         FileXML fileXML;
         Secure pwd;
 
+        /// <summary>
+        /// Constructeur principal de la classe frmCreation
+        /// </summary>
         public frmCreation()
         {
             InitializeComponent();
@@ -31,8 +34,14 @@ namespace ATAPP_XML
             pwd = new Secure();
         }
 
+        /// <summary>
+        /// Méthode qui permet d'ajouter les informations utilisateur de l'application dans le fichier XML
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSetPwd_Click(object sender, EventArgs e)
         {
+            // Boucle qui vérifie si les champs ne sont pas vide
             if (tbxNewPwd.Text == tbxConfNewPwd.Text && tbxNewPwd.Text != string.Empty && tbxConfNewPwd.Text != string.Empty)
             {
                 fileXML.CreateFile();
@@ -49,8 +58,14 @@ namespace ATAPP_XML
             }
         }
 
+        /// <summary>
+        /// Méthode qui permet de définir si un mot de passe doit être générer aléatoirement
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbxRandomPassword_CheckedChanged(object sender, EventArgs e)
         {
+            // Boucle qui permet de vérifier si la comboBox est cochée
             if (cbxRandomPassword.Checked)
             {
                 string GeneratedPwd = pwd.GeneratorRandom();
@@ -77,6 +92,7 @@ namespace ATAPP_XML
         /// <summary>
         /// Méthode qui permet de fermer le formulaire de connexion et d'ouvrir le formulaire principal
         /// </summary>
+        /// <param name="password"> Le mot de passe de l'utilisateur </param>
         public void CloseThis(string password)
         {
             this.Hide();
@@ -88,6 +104,8 @@ namespace ATAPP_XML
         /// <summary>
         /// Méthode qui permet de changer l'image d'une picture box et changer le caractère des champs de mot de passe
         /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void PbxClicked(object sender, EventArgs e)
         {
             PictureBox pictureBox = sender as PictureBox;
@@ -95,6 +113,7 @@ namespace ATAPP_XML
 
             var data = ChangeBoolIfClicked(pictureBox, textBox);
 
+            // Boucle qui vérifie si le mot de passe est visible ou non
             if (data.Item1 == true)
             {
                 pictureBox.Image = Properties.Resources.icons8_visible_24__1_;
@@ -107,8 +126,14 @@ namespace ATAPP_XML
             }
         }
 
+        /// <summary>
+        /// Méthode qui permet d'utiliser la touche entrée pour se connecter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbxKeyDown(object sender, KeyEventArgs e)
         {
+            // Boucle qui permet de vérifier si la touche préssée est entrer
             if (e.KeyCode == Keys.Enter)
             {
                 btnSetPwd.PerformClick();
@@ -123,6 +148,7 @@ namespace ATAPP_XML
         /// <returns> L'état de la PictureBox </returns>
         public (bool, TextBox) ChangeBoolIfClicked(PictureBox pictureBox, TextBox textBox)
         {
+            // Boucle qui vérifie le nom de la pictureBox
             if (pictureBox.Name == "pbxNewPwd")
             {
                 textBox = tbxNewPwd;

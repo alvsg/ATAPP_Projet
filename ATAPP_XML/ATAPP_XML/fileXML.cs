@@ -122,12 +122,12 @@ namespace ATAPP_XML
         }
 
         /// <summary>
-        /// 
+        /// Méthode qui permet de mettre à jour les données dnas le fichier XML
         /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="nameOf"></param>
-        /// <param name="password"></param>
-        /// <param name="noIndex"></param>
+        /// <param name="userName"> Le nom de l'utilisateur </param>
+        /// <param name="nameOf"> Le nom du site/du logiciel </param>
+        /// <param name="password"> LE mot de passe </param>
+        /// <param name="noIndex"> L'identifiant </param>
         public void UpdateDataInXml(string userName, string nameOf, string password, int noIndex)
         {
             XDocument xmlFile = XDocument.Load(_filePath);

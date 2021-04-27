@@ -29,6 +29,10 @@ namespace ATAPP_XML
 
         public string Error { get => _error; set => _error = value; }
 
+
+        /// <summary>
+        /// Constructeur principal
+        /// </summary>
         public Secure()
         {
             file = new FileXML();
@@ -38,24 +42,40 @@ namespace ATAPP_XML
         /// <summary>
         /// Méthode qui permet de générer un mot de passe aléatoire avec une taille aléatoire
         /// </summary>
-        /// <returns></returns>
+        /// <returns> Le mot de passe générer aléatoirement </returns>
         public string GeneratorRandom()
         {
             // https://wmich.edu/arts-sciences/technology-password-tips
-            string characters = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789 ~`!@#$%^&*()_-+={[}]|\\:;\"'<,>.?/";
+            string characters = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ";
+            string numbers = "0123456789";
+            string specialChar = "~`!@#$%^&*()_-+={[}]|\\:;\"'<,>.?/";
             Random rnd = new Random();
             int length = rnd.Next(8, 32);
             string GeneratePwd = "";
-            for (int i = 0; i <= length; i++)
+            for (int i = 0; i < length; i++)
             {
-                GeneratePwd += characters[rnd.Next(0, characters.Length)];
+                if (i % 2 == 0)
+                {
+                    GeneratePwd += characters[rnd.Next(0, characters.Length)];
+                }
+                else if (i % 5 == 0)
+                {
+                    GeneratePwd += specialChar[rnd.Next(0, specialChar.Length)];
+                }
+                else if (i % i == 0)
+                {
+                    GeneratePwd += numbers[rnd.Next(0, numbers.Length)];
+                }
             }
             return GeneratePwd;
         }
+
         /// <summary>
         /// Méthode qui permet de récupérer le mot de passe puis de lancer le chiffrage selon ce mot de passe
         /// </summary>
+        /// <param name="action"> L'action effectué le fichier </param>
         /// <param name="password"> Le mot de passe de l'utilisateur </param>
+        /// <param name="state"> Le statut de l'action </param>
         public void ActionOnFile(bool action, string password, string state)
         {
             // Epingle le mot de passe
@@ -241,30 +261,45 @@ namespace ATAPP_XML
             }
         }
 
+        /// <summary>
+        /// Méthode qui permet d'ajouter ou de modifier les données dans le fichier XML
+        /// </summary>
+        /// <param name="key"> Le mot de passe de l'utilisateur </param>
+        /// <param name="safe"> Le coffre fort </param>
         public void addInFile(string key, Safe safe)
         {
             Secure pwd = new Secure();
             pwd.ActionOnFile(false, key, "writing");
+            // Boucle qui vérifie qu'il n'y est pas d'erreur
             if (pwd.Error == null)
             {
+                // Boucle qui parcourt la liste de donnée dans le coffre fort
                 foreach (Record record in safe.Coffre)
                 {
                     int noIndex = safe.Coffre.FindIndex(a => a.Name == record.Name);
+                    // Boucle qui vérifie si l'index de la donnée est dans la liste des éléments a ajouté
                     if (safe.AddedInXmlFile.Contains(noIndex) == true)
                     {
                         file.InsertDataInFile(record.Username, record.Name, record.Password, noIndex);
                     }
+                    // Boucle qui vérifie si l'index de la donnée est dans la liste des éléments modifié
                     else if (safe.ModifiedInXmlFile.Contains(noIndex) == true)
                     {
                         file.UpdateDataInXml(record.Username, record.Name, record.Password, noIndex);
+                        // Boucle qui vérifie que le mot de passe de l'application a été modifié
                         if (key != safe.Coffre[0].Password)
                         {
                             key = safe.Coffre[0].Password;
                         }
+                    }else if (safe.DeletedInXmlFile.Contains(noIndex) == true)
+                    {
+                        //---------------------------------------------------SUPPRIMER DU FICHIER XML---------------------------------------------------\\
                     }
                 }
                 pwd.ActionOnFile(true, key, "writing");
             }
+            safe.AddedInXmlFile.Clear();
+            safe.ModifiedInXmlFile.Clear();
         }
     }
 }

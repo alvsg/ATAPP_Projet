@@ -26,7 +26,7 @@ Afficher/Masquer le mot de passe
 - [x] ~~(Potentiel) Revoir l'emplacement des méthodes de chiffrement/déchiffrement.~~
 - [x] ~~Revoir la sécurité lors de l'ouverture de l'application.~~
 - [ ] (Potentiel) Proposer une alternative en cas de mot de passe oublié.
-- [x] Modifier et Supprimer les données dans le fichiers .xml.
+- [ ] Modifier et Supprimer les données dans le fichiers .xml.
 - [ ] Gérer l'import/export d'un fichier .xml.
 - [x] ~~Revoir l'emplacement de la méthode de création du fichier .xml.~~
 - [x] ~~Récupérer toutes les données du fichier .xml dans une liste au lacement de l'application.~~
