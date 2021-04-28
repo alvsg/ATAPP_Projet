@@ -156,6 +156,7 @@ namespace ATAPP_XML
             btnRecord = new Button();
             btnRecord.Name = record.Name;
             btnRecord.Image = Properties.Resources.icons8_accueil_32;
+            // https://stackoverflow.com/questions/17828774/get-resources-with-string LOOK AT DIS 
             btnRecord.TextImageRelation = TextImageRelation.ImageAboveText;
             btnRecord.Text = record.Name;
             btnRecord.FlatStyle = FlatStyle.Flat;
