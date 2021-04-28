@@ -58,7 +58,7 @@ namespace ATAPP_XML
                 {
                     GeneratePwd += characters[rnd.Next(0, characters.Length)];
                 }
-                else if (i % 5 == 0)
+                else if (i % 3 == 0)
                 {
                     GeneratePwd += specialChar[rnd.Next(0, specialChar.Length)];
                 }
@@ -281,6 +281,7 @@ namespace ATAPP_XML
                     if (safe.AddedInXmlFile.Contains(noIndex) == true)
                     {
                         file.InsertDataInFile(record.Username, record.Name, record.Password, noIndex);
+                        break;
                     }
                     // Boucle qui vérifie si l'index de la donnée est dans la liste des éléments modifié
                     else if (safe.ModifiedInXmlFile.Contains(noIndex) == true)
@@ -291,6 +292,7 @@ namespace ATAPP_XML
                         {
                             key = safe.Coffre[0].Password;
                         }
+                        break;
                     }
                     else if (safe.DeletedInXmlFile.Contains(noIndex) == true)
                     {

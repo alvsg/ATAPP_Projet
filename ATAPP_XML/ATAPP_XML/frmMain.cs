@@ -69,13 +69,23 @@ namespace ATAPP_XML
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnNouveau_Click(object sender, EventArgs e)
         {
             safe.AddValuesInData();
             if (!safe.Cancel)
             {
                 safe.CreateButton(safe.NewRecord, flpButtonData);
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnQuitter_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

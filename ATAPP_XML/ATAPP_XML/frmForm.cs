@@ -76,6 +76,11 @@ namespace ATAPP_XML
                     {
                         lblPwd.Text += "*";
                     }
+
+                    if (lblName.Text == "Biblio-tech")
+                    {
+                        btnAction.Enabled = false;
+                    }
                     break;
 
                 case "Ajouter":

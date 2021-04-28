@@ -60,16 +60,16 @@ namespace ATAPP_XML
         /// Méthode qui permet d'ouvrir un formulaire affichant les données du bouton cliquer et permettant de les modifier 
         /// </summary>
         /// <param name="button"> Un bouton qui se trouve sur la frmMain </param>
-        private void ShowAndLetModifyValuesInData(Button button)
+        private void ShowAndLetModifyValuesInData(int index)
         {
-            Record record = _safe.Where(nameOf => nameOf.Name == button.Name).First();
+            Record record = _safe[index];
             Secure pwd = new Secure();
-            int index = _safe.IndexOf(record);
             frmForm frmFormModifiedInXmlFile = new frmForm(record, "ShowData", Coffre);
             frmFormModifiedInXmlFile.ShowDialog();
             // Boucle qui permet de vérifier le résultat de la boite de dialogue du formulaire frmForm
             if (frmFormModifiedInXmlFile.DialogResult == DialogResult.OK)
             {
+                updateButton(index, frmFormModifiedInXmlFile.Enregistrement.Name);
                 _safe[index] = new Record(frmFormModifiedInXmlFile.Enregistrement.Username, frmFormModifiedInXmlFile.Enregistrement.Password, frmFormModifiedInXmlFile.Enregistrement.Name);
                 _modifiedInXmlFile.Add(index);
             }
@@ -140,7 +140,7 @@ namespace ATAPP_XML
             // Boucle qui vérifie que le sender est bien un bouton
             if (sender is Button btnRecord)
             {
-                ShowAndLetModifyValuesInData(btnRecord);
+                ShowAndLetModifyValuesInData(btnRecord.TabIndex);
             }
         }
 
@@ -155,12 +155,23 @@ namespace ATAPP_XML
 
             btnRecord = new Button();
             btnRecord.Name = record.Name;
+            btnRecord.Image = Properties.Resources.icons8_accueil_32;
+            btnRecord.TextImageRelation = TextImageRelation.ImageAboveText;
             btnRecord.Text = record.Name;
             btnRecord.FlatStyle = FlatStyle.Flat;
             btnRecord.Width = 167;
             btnRecord.Height = 79;
             btnRecord.Click += btnFlp_Click;
             flpDataValueAsButton.Controls.Add(btnRecord);
+        }
+
+        public void updateButton(int index, string newName)
+        {
+            Button button = (Button)_flpButton.Controls[index];
+            if(button.Text != newName)
+            {
+                button.Text = newName;
+            }
         }
     }
 }
