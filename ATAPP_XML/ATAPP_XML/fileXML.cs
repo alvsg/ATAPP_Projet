@@ -18,11 +18,13 @@ namespace ATAPP_XML
     class FileXML
     {
         private string _username, _dirPath, _filePath, _file;
-
+        
         public string Username { get => _username; }
         public string DirPath { get => _dirPath; }
         public string FilePath { get => _filePath; }
-        public string xmlFile { get => _file; }
+        public string File { get => _file; }
+
+        XDocument xmlFile;
 
         /// <summary>
         /// Constructeur principal de la classe FileXML
@@ -48,7 +50,7 @@ namespace ATAPP_XML
                 return false;
             }
             // Boucle qui vérifie si le fichier XML n'existe pas
-            else if (!File.Exists(_filePath + ".aes"))
+            else if (!System.IO.File.Exists(_filePath + ".aes"))
             {
                 return false;
             }
@@ -61,7 +63,7 @@ namespace ATAPP_XML
         public void CreateFile()
         {
             string createText = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" + Environment.NewLine + "<data>" + Environment.NewLine + "</data>";
-            File.WriteAllText(_filePath, createText);
+            System.IO.File.WriteAllText(_filePath, createText);
         }
 
         /// <summary>
@@ -73,7 +75,7 @@ namespace ATAPP_XML
         /// <param name="noIndex"></param>
         public void InsertDataInFile(string userName, string nameOf, string password, int noIndex)
         {
-            XDocument xmlFile = XDocument.Load(_filePath);
+            xmlFile = XDocument.Load(_filePath);
 
             // Déclaration des balises
             XElement name = new XElement("name", nameOf);
@@ -97,9 +99,9 @@ namespace ATAPP_XML
         public void IFExist(string file)
         {
             // Boucle qui vérifie si le fichier chercher existe
-            if (File.Exists(file))
+            if (System.IO.File.Exists(file))
             {
-                File.Delete(file);
+                System.IO.File.Delete(file);
             }
         }
 
@@ -110,7 +112,7 @@ namespace ATAPP_XML
         public List<Record> GetDataInArray()
         {
             List<Record> data = new List<Record>();
-            XDocument xmlFile = XDocument.Load(_filePath);
+            xmlFile = XDocument.Load(_filePath);
 
             // Boucle qui parcour les données dans le fichiers XML
             foreach (XElement element in xmlFile.Descendants("data").Nodes().ToList())
@@ -130,7 +132,7 @@ namespace ATAPP_XML
         /// <param name="noIndex"> L'identifiant </param>
         public void UpdateDataInXml(string userName, string nameOf, string password, int noIndex)
         {
-            XDocument xmlFile = XDocument.Load(_filePath);
+            xmlFile = XDocument.Load(_filePath);
             foreach (XElement parent in xmlFile.Root.Elements("id"))
             {
                 if ((int)parent.Attribute("num") == noIndex)
@@ -147,6 +149,19 @@ namespace ATAPP_XML
                     {
                         parent.Element("pwd").Value = password;
                     }
+                }
+            }
+            xmlFile.Save(_filePath);
+        }
+
+        public void DeleteDataInXmlFile(int index)
+        {
+            xmlFile = XDocument.Load(_filePath);
+            foreach (XElement parent in xmlFile.Root.Elements("id"))
+            {
+                if ((int)parent.Attribute("num") == index)
+                {
+                    parent.Remove();
                 }
             }
             xmlFile.Save(_filePath);

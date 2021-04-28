@@ -137,8 +137,7 @@ namespace ATAPP_XML
             }
             else if (btnAction.Text == "Supprimer")
             {
-                Delete();
-                this.DialogResult = DialogResult.Cancel;
+                this.DialogResult = DialogResult.Abort;
             }
         }
 
@@ -270,11 +269,6 @@ namespace ATAPP_XML
             {
                 tbxPwd.Text = "";
             }
-        }
-
-        private void Delete()
-        {
-
         }
     }
 }

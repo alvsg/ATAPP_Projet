@@ -21,6 +21,7 @@ namespace ATAPP_XML
         private Record _newRecord;
         private int _noDonnee;
         private bool _cancel;
+        private FlowLayoutPanel _flpButton;
 
         FileXML file;
         Button btnRecord;
@@ -33,6 +34,7 @@ namespace ATAPP_XML
         public int NoDonnee { get => _noDonnee; set => _noDonnee = value; }
         public bool Cancel { get => _cancel; }
         public List<int> DeletedInXmlFile { get => _deletedInXmlFile; set => _deletedInXmlFile = value; }
+        public FlowLayoutPanel FlpButton { get => _flpButton; }
 
         /// <summary>
         /// Constructeur principal de la classe Safe qui prends la form principal en paramètre
@@ -46,6 +48,7 @@ namespace ATAPP_XML
             _noDonnee = _safe.Count;
             _addedInXmlFile = new List<int>();
             _modifiedInXmlFile = new List<int>();
+            _deletedInXmlFile = new List<int>();
         }
 
         public Safe()
@@ -60,29 +63,28 @@ namespace ATAPP_XML
         private void ShowAndLetModifyValuesInData(Button button)
         {
             Record record = _safe.Where(nameOf => nameOf.Name == button.Name).First();
+            Secure pwd = new Secure();
             int index = _safe.IndexOf(record);
             frmForm frmFormModifiedInXmlFile = new frmForm(record, "ShowData", Coffre);
             frmFormModifiedInXmlFile.ShowDialog();
             // Boucle qui permet de vérifier le résultat de la boite de dialogue du formulaire frmForm
             if (frmFormModifiedInXmlFile.DialogResult == DialogResult.OK)
             {
-                Secure pwd = new Secure();
                 _safe[index] = new Record(frmFormModifiedInXmlFile.Enregistrement.Username, frmFormModifiedInXmlFile.Enregistrement.Password, frmFormModifiedInXmlFile.Enregistrement.Name);
                 _modifiedInXmlFile.Add(index);
-                pwd.addInFile(frmMain.Key, this);
             }
             else if (frmFormModifiedInXmlFile.DialogResult == DialogResult.Abort)
             {
-                _newRecord = new Record();
-
-                _newRecord.Name = frmFormModifiedInXmlFile.Enregistrement.Name;
-                _newRecord.Username = frmFormModifiedInXmlFile.Enregistrement.Username;
-                _newRecord.Password = frmFormModifiedInXmlFile.Enregistrement.Password;
-
-                _safe.Remove(_newRecord);
-
-                _deletedInXmlFile.Add(index);
+                foreach(Button btn in _flpButton.Controls)
+                {
+                    if (index == btn.TabIndex)
+                    {
+                        _flpButton.Controls.RemoveAt(index);
+                        _deletedInXmlFile.Add(index);
+                    }
+                }
             }
+            pwd.addInFile(frmMain.Key, this);
         }
 
         /// <summary>
@@ -149,6 +151,8 @@ namespace ATAPP_XML
         /// <param name="flpDataValueAsButton"> Le flowLayoutPanel de la frmMain </param>
         public void CreateButton(Record record, FlowLayoutPanel flpDataValueAsButton)
         {
+            _flpButton = flpDataValueAsButton;
+
             btnRecord = new Button();
             btnRecord.Name = record.Name;
             btnRecord.Text = record.Name;

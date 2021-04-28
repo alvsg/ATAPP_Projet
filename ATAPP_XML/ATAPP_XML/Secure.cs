@@ -291,15 +291,19 @@ namespace ATAPP_XML
                         {
                             key = safe.Coffre[0].Password;
                         }
-                    }//else if (safe.DeletedInXmlFile.Contains(noIndex) == true)
-                    //{
-                        //---------------------------------------------------SUPPRIMER DU FICHIER XML---------------------------------------------------\\
-                    //}
+                    }
+                    else if (safe.DeletedInXmlFile.Contains(noIndex) == true)
+                    {
+                        file.DeleteDataInXmlFile(noIndex);
+                        safe.Coffre.RemoveAt(noIndex);
+                        break;
+                    }
                 }
                 pwd.ActionOnFile(true, key, "writing");
             }
             safe.AddedInXmlFile.Clear();
             safe.ModifiedInXmlFile.Clear();
+            safe.DeletedInXmlFile.Clear();
         }
     }
 }
