@@ -23,6 +23,7 @@ namespace ATAPP_XML
         private int _noDonnee;
         private bool _cancel;
         private FlowLayoutPanel _flpButton;
+        int nombre;
 
         FileXML file;
         Button btnRecord;
@@ -121,9 +122,9 @@ namespace ATAPP_XML
         /// Méthode qui permet d'ouvrir un formulaire affichant les données du bouton cliquer et permettant de les modifier 
         /// </summary>
         /// <param name="button"> Un bouton qui se trouve sur la frmMain </param>
-        private void ShowAndLetModifyValuesInData(int index)
+        private void ShowAndLetModifyValuesInData(Record record)
         {
-            Record record = _safe[index];
+            int index = _safe.IndexOf(record);
             Secure pwd = new Secure();
             frmForm frmFormModifiedInXmlFile = new frmForm(record, "ShowData", Coffre);
             frmFormModifiedInXmlFile.ShowDialog();
@@ -201,7 +202,7 @@ namespace ATAPP_XML
             // Boucle qui vérifie que le sender est bien un bouton
             if (sender is Button btnRecord)
             {
-                ShowAndLetModifyValuesInData((int)btnRecord.Tag);
+                ShowAndLetModifyValuesInData((Record)btnRecord.Tag);
             }
         }
 
@@ -221,16 +222,19 @@ namespace ATAPP_XML
             {
                 if(logoAChercher.Equals(logo, StringComparison.CurrentCultureIgnoreCase))
                 {
-                    btnRecord.Image = (System.Drawing.Bitmap)Properties.Resources.ResourceManager.GetObject(logo);
+                    string path = @"C:\Users\" + file.Username;
+                    path += @"\Desktop\ATAPP_XML\ATAPP_XML\Resources\icon\" + logo;
+                    System.Drawing.Image bitmap = new System.Drawing.Bitmap(path);
+                    btnRecord.Image = bitmap;
+                    btnRecord.TextImageRelation = TextImageRelation.ImageAboveText;
                 }
             }
-            btnRecord.TextImageRelation = TextImageRelation.ImageAboveText;
             btnRecord.Text = record.Name;
             btnRecord.FlatStyle = FlatStyle.Flat;
             btnRecord.Width = 167;
             btnRecord.Height = 79;
             btnRecord.Click += btnFlp_Click;
-            btnRecord.Tag = _safe.IndexOf(record);
+            btnRecord.Tag = record;
             flpDataValueAsButton.Controls.Add(btnRecord);
         }
 

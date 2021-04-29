@@ -179,7 +179,6 @@ namespace ATAPP_XML
                         {
                             while ((read = fsIn.Read(buffer, 0, buffer.Length)) > 0)
                             {
-                                Application.DoEvents();
                                 cs.Write(buffer, 0, read);
                             }
                         }
@@ -237,7 +236,6 @@ namespace ATAPP_XML
                         {
                             while ((read = cs.Read(buffer, 0, buffer.Length)) > 0)
                             {
-                                Application.DoEvents();
                                 fsOut.Write(buffer, 0, read);
                             }
                         }
