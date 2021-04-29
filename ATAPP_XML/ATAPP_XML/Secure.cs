@@ -26,6 +26,7 @@ namespace ATAPP_XML
         static byte[] salt;
         private string _error;
         FileXML file;
+        private static readonly object _lock = new object();
 
         public string Error { get => _error; set => _error = value; }
 
@@ -140,55 +141,54 @@ namespace ATAPP_XML
         {
             // http://stackoverflow.com/questions/27645527/aes-encryption-on-large-files
 
-            FileStream fsCrypt = new FileStream(inputFile + ".aes", FileMode.Create);
-
-            // Générer un sel aléatoire
-            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-
-            // Définir l'algorithme de chiffrement symétrique Rijndael
-            RijndaelManaged AES = new RijndaelManaged();
-            AES.KeySize = 256;
-            AES.BlockSize = 128;
-            AES.Padding = PaddingMode.PKCS7;
-
-            // http://stackoverflow.com/questions/2659214/why-do-i-need-to-use-the-rfc2898derivebytes-class-in-net-instead-of-directly
-            // Hash à plusieurs reprises le mot de passe de l'utilisateur avec le sel. Nombre d'itérations élevé.
-            var key = new Rfc2898DeriveBytes(passwordBytes, salt, 50000);
-            AES.Key = key.GetBytes(AES.KeySize / 8);
-            AES.IV = key.GetBytes(AES.BlockSize / 8);
-
-            // Cipher modes: http://security.stackexchange.com/questions/52665/which-is-the-best-cipher-mode-and-padding-mode-for-aes-encryption
-            AES.Mode = CipherMode.CFB;
-
-            // Ecrit le sel au début du fichier
-            fsCrypt.Write(salt, 0, salt.Length);
-
-            CryptoStream cs = new CryptoStream(fsCrypt, AES.CreateEncryptor(), CryptoStreamMode.Write);
-
-            FileStream fsIn = new FileStream(inputFile, FileMode.Open);
-
-            // Créationd'un tampon (1mb) pour que seule cette quantité soit allouée dans la mémoire et non le fichier entier
-            byte[] buffer = new byte[1048576];
-            int read;
-
-            try
+            using (FileStream fsCrypt = new FileStream(inputFile + ".aes", FileMode.Create))
             {
-                while ((read = fsIn.Read(buffer, 0, buffer.Length)) > 0)
+
+                // Générer un sel aléatoire
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+
+                // Définir l'algorithme de chiffrement symétrique Rijndael
+                RijndaelManaged AES = new RijndaelManaged();
+                AES.KeySize = 256;
+                AES.BlockSize = 128;
+                AES.Padding = PaddingMode.PKCS7;
+
+                // http://stackoverflow.com/questions/2659214/why-do-i-need-to-use-the-rfc2898derivebytes-class-in-net-instead-of-directly
+                // Hash à plusieurs reprises le mot de passe de l'utilisateur avec le sel. Nombre d'itérations élevé.
+                var key = new Rfc2898DeriveBytes(passwordBytes, salt, 50000);
+                AES.Key = key.GetBytes(AES.KeySize / 8);
+                AES.IV = key.GetBytes(AES.BlockSize / 8);
+
+                // Cipher modes: http://security.stackexchange.com/questions/52665/which-is-the-best-cipher-mode-and-padding-mode-for-aes-encryption
+                AES.Mode = CipherMode.CFB;
+
+                // Ecrit le sel au début du fichier
+                fsCrypt.Write(salt, 0, salt.Length);
+
+                using (CryptoStream cs = new CryptoStream(fsCrypt, AES.CreateEncryptor(), CryptoStreamMode.Write))
                 {
-                    Application.DoEvents();
-                    cs.Write(buffer, 0, read);
-                }
 
-                fsIn.Close();
-            }
-            catch (Exception ex)
-            {
-                _error = "Error: " + ex.Message;
-            }
-            finally
-            {
-                cs.Close();
-                fsCrypt.Close();
+                    using (FileStream fsIn = new FileStream(inputFile, FileMode.Open))
+                    {
+
+                        // Créationd'un tampon (1mb) pour que seule cette quantité soit allouée dans la mémoire et non le fichier entier
+                        byte[] buffer = new byte[1048576];
+                        int read;
+
+                        try
+                        {
+                            while ((read = fsIn.Read(buffer, 0, buffer.Length)) > 0)
+                            {
+                                Application.DoEvents();
+                                cs.Write(buffer, 0, read);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            _error = "Error: " + ex.Message;
+                        }
+                    }
+                }
             }
         }
 
@@ -200,64 +200,57 @@ namespace ATAPP_XML
         /// <param name="password"> Le mot de passe de l'utilisateur </param>
         private void FileDecrypt(string inputFile, string outputFile, string password)
         {
-            // Générer un sel aléatoire
-            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-
-            FileStream fsCrypt = new FileStream(inputFile, FileMode.Open);
-            fsCrypt.Read(salt, 0, salt.Length);
-
-            // Définir l'algorithme de chiffrement symétrique Rijndael
-            RijndaelManaged AES = new RijndaelManaged();
-            AES.KeySize = 256;
-            AES.BlockSize = 128;
-            AES.Padding = PaddingMode.PKCS7;
-
-            // http://stackoverflow.com/questions/2659214/why-do-i-need-to-use-the-rfc2898derivebytes-class-in-net-instead-of-directly
-            // Hash à plusieurs reprises le mot de passe de l'utilisateur avec le sel. Nombre d'itérations élevé.
-            var key = new Rfc2898DeriveBytes(passwordBytes, salt, 50000);
-            AES.Key = key.GetBytes(AES.KeySize / 8);
-            AES.IV = key.GetBytes(AES.BlockSize / 8);
-
-            // Cipher modes: http://security.stackexchange.com/questions/52665/which-is-the-best-cipher-mode-and-padding-mode-for-aes-encryption
-            AES.Mode = CipherMode.CFB;
-
-            CryptoStream cs = new CryptoStream(fsCrypt, AES.CreateDecryptor(), CryptoStreamMode.Read);
-
-            FileStream fsOut = new FileStream(outputFile, FileMode.Create);
-
-            // Créationd'un tampon (1mb) pour que seule cette quantité soit allouée dans la mémoire et non le fichier entier
-            byte[] buffer = new byte[1048576];
-            int read;
-
-            try
+            lock (_lock)
             {
-                while ((read = cs.Read(buffer, 0, buffer.Length)) > 0)
+                // Générer un sel aléatoire
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+
+                using (FileStream fsCrypt = new FileStream(inputFile, FileMode.Open))
                 {
-                    Application.DoEvents();
-                    fsOut.Write(buffer, 0, read);
-                }
-            }
-            catch (CryptographicException ex_CryptographicException)
-            {
-                _error = "CryptographicException error: " + ex_CryptographicException.Message;
-            }
-            catch (Exception ex)
-            {
-                _error = "Error: " + ex.Message;
-            }
+                    fsCrypt.Read(salt, 0, salt.Length);
 
-            try
-            {
-                cs.Close();
-            }
-            catch (Exception ex)
-            {
-                _error = "Error by closing CryptoStream: " + ex.Message;
-            }
-            finally
-            {
-                fsOut.Close();
-                fsCrypt.Close();
+                    // Définir l'algorithme de chiffrement symétrique Rijndael
+                    RijndaelManaged AES = new RijndaelManaged();
+                    AES.KeySize = 256;
+                    AES.BlockSize = 128;
+                    AES.Padding = PaddingMode.PKCS7;
+
+                    // http://stackoverflow.com/questions/2659214/why-do-i-need-to-use-the-rfc2898derivebytes-class-in-net-instead-of-directly
+                    // Hash à plusieurs reprises le mot de passe de l'utilisateur avec le sel. Nombre d'itérations élevé.
+                    var key = new Rfc2898DeriveBytes(passwordBytes, salt, 50000);
+                    AES.Key = key.GetBytes(AES.KeySize / 8);
+                    AES.IV = key.GetBytes(AES.BlockSize / 8);
+
+                    // Cipher modes: http://security.stackexchange.com/questions/52665/which-is-the-best-cipher-mode-and-padding-mode-for-aes-encryption
+                    AES.Mode = CipherMode.CFB;
+
+                    CryptoStream cs = new CryptoStream(fsCrypt, AES.CreateDecryptor(), CryptoStreamMode.Read);
+
+                    using (FileStream fsOut = new FileStream(outputFile, FileMode.Create))
+                    {
+
+                        // Créationd'un tampon (1mb) pour que seule cette quantité soit allouée dans la mémoire et non le fichier entier
+                        byte[] buffer = new byte[1048576];
+                        int read;
+
+                        try
+                        {
+                            while ((read = cs.Read(buffer, 0, buffer.Length)) > 0)
+                            {
+                                Application.DoEvents();
+                                fsOut.Write(buffer, 0, read);
+                            }
+                        }
+                        catch (CryptographicException ex_CryptographicException)
+                        {
+                            _error = "CryptographicException error: " + ex_CryptographicException.Message;
+                        }
+                        catch (Exception ex)
+                        {
+                            _error = "Error: " + ex.Message;
+                        }
+                    }
+                }
             }
         }
 

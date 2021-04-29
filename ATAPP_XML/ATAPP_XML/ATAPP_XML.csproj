@@ -137,5 +137,185 @@
   <ItemGroup>
     <None Include="Resources\icons8-accueil-32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\airbnb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aliexpress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\amazon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apple store.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\battle.net.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\burger king.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\debian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deezer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\discord.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\disney +.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ebay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\epic games.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facebook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\figma.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\genshin impact.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\github.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gitlab.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\instagram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\internet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\league of legends.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\linkedin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mcdonalds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\microsoft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minecraft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moodle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\netflix.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nordvpn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nvidia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\origin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paypal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pinterest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prime video.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ps3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ps5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\razer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reddit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rockstar games.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\slack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\snapchat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\soundcloud.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spotify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\starbucks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\telegramme.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tik tok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tinder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tripadvisor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tumblr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twitch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uber eats.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ubuntu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uplay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wakanim.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\webtoon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xiaomi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\youtube.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
