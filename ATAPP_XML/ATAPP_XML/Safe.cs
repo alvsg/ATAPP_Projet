@@ -18,12 +18,10 @@ namespace ATAPP_XML
     {
         private List<Record> _safe;
         private List<int> _addedInXmlFile, _modifiedInXmlFile, _deletedInXmlFile;
-        private List<string> _logos;
         private Record _newRecord;
         private int _noDonnee;
         private bool _cancel;
         private FlowLayoutPanel _flpButton;
-        int nombre;
 
         FileXML file;
         Button btnRecord;
@@ -37,7 +35,6 @@ namespace ATAPP_XML
         public bool Cancel { get => _cancel; }
         public List<int> DeletedInXmlFile { get => _deletedInXmlFile; set => _deletedInXmlFile = value; }
         public FlowLayoutPanel FlpButton { get => _flpButton; }
-        public List<string> Logos { get => _logos; set => _logos = value; }
 
         /// <summary>
         /// Constructeur principal de la classe Safe qui prends la form principal en paramètre
@@ -52,65 +49,6 @@ namespace ATAPP_XML
             _addedInXmlFile = new List<int>();
             _modifiedInXmlFile = new List<int>();
             _deletedInXmlFile = new List<int>();
-
-            _logos = new List<string>();
-            _logos.Add("airbnb.png");
-            _logos.Add("aliexpress.png");
-            _logos.Add("amazon.png");
-            _logos.Add("burger king.png");
-            _logos.Add("debian.png");
-            _logos.Add("deezer.png");
-            _logos.Add("discord.png");
-            _logos.Add("disney +.png");
-            _logos.Add("ebay.png");
-            _logos.Add("epic games.png");
-            _logos.Add("facebook.png");
-            _logos.Add("figma.png");
-            _logos.Add("genshin impact.png");
-            _logos.Add("github.png");
-            _logos.Add("gitlab.png");
-            _logos.Add("gmail.png");
-            _logos.Add("hp.png");
-            _logos.Add("icon8.png");
-            _logos.Add("instagram.png");
-            _logos.Add("internet.png");
-            _logos.Add("league of legends.png");
-            _logos.Add("linkedin.png");
-            _logos.Add("mcdonalds.png");
-            _logos.Add("minecraft.png");
-            _logos.Add("moodle.png");
-            _logos.Add("netflix.png");
-            _logos.Add("nordvpn.png");
-            _logos.Add("nvidia.png");
-            _logos.Add("origin.png");
-            _logos.Add("paypal.png");
-            _logos.Add("pinterest.png");
-            _logos.Add("prime video.png");
-            _logos.Add("ps3.png");
-            _logos.Add("ps5.png");
-            _logos.Add("razer.png");
-            _logos.Add("reddit.png");
-            _logos.Add("rockstar games.png");
-            _logos.Add("slack.png");
-            _logos.Add("snapchat.png");
-            _logos.Add("soundcloud.png");
-            _logos.Add("spotify.png");
-            _logos.Add("starbucks.png");
-            _logos.Add("steam.png");
-            _logos.Add("telegramme.png");
-            _logos.Add("tik tok.png");
-            _logos.Add("tinder.png");
-            _logos.Add("tripadvisor.png");
-            _logos.Add("tumblr.png");
-            _logos.Add("twitch.png");
-            _logos.Add("twitter.png");
-            _logos.Add("uber eats.png");
-            _logos.Add("ubuntu.png");
-            _logos.Add("uplay.png");
-            _logos.Add("wakanim.png");
-            _logos.Add("webtoon.png");
-            _logos.Add("xiaomi.png");
-            _logos.Add("youtube.png");
         }
 
         public Safe()
@@ -217,18 +155,7 @@ namespace ATAPP_XML
 
             btnRecord = new Button();
             btnRecord.Name = record.Name;
-            string logoAChercher = btnRecord.Name + ".png";
-            foreach(string logo in _logos)
-            {
-                if(logoAChercher.Equals(logo, StringComparison.CurrentCultureIgnoreCase))
-                {
-                    string path = @"C:\Users\" + file.Username;
-                    path += @"\Desktop\ATAPP_XML\ATAPP_XML\Resources\icon\" + logo;
-                    System.Drawing.Image bitmap = new System.Drawing.Bitmap(path);
-                    btnRecord.Image = bitmap;
-                    btnRecord.TextImageRelation = TextImageRelation.ImageAboveText;
-                }
-            }
+            string logoAChercher = btnRecord.Name;
             btnRecord.Text = record.Name;
             btnRecord.FlatStyle = FlatStyle.Flat;
             btnRecord.Width = 167;
